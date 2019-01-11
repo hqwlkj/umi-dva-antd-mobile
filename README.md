@@ -37,18 +37,18 @@
 ```javascript
 
 // 安装项目
-git clone --depth=1 https://github.com/hqwlkj/umi-dva-antd-mobile.git my-project
+$ git clone --depth=1 https://github.com/hqwlkj/umi-dva-antd-mobile.git my-project
 
-cd my-project
+$ cd my-project
 
-// 检出依赖
-yarn
+// 安装依赖
+$ yarn or npm install
 
 // 运行
-yarn start
+$ yarn start or npm run start # 访问 http://localhost:8080
 
 // 打包
-yarn build
+$ yarn build or npm run build
 
 ```
 更多命令可在[package.json](./package.json)中查看
