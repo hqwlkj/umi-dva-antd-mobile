@@ -54,7 +54,6 @@ yarn build
 更多命令可在[package.json](./package.json)中查看
 
 
-#### 如果本项目对你有帮助，请不要吝啬你的star
 
 ## 支持环境
 
@@ -66,7 +65,9 @@ yarn build
 
 ## 参与贡献
 
-我们非常欢迎你的贡献，你可以通过以下方式和我们一起共建 :smiley:：
+我们非常欢迎你的贡献，你可以通过以下方式和我一起共建 :smiley:：
 
 - 通过 [Issue](https://github.com/hqwlkj/umi-dva-antd-mobile/issues) 报告 bug 或进行咨询。
 - 提交 [Pull Request](https://github.com/hqwlkj/umi-dva-antd-mobile/pulls) 改进 Pro 的代码。
+
+
