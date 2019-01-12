@@ -8,7 +8,7 @@ const plugins = [
   [
     'umi-plugin-react',
     {
-      'antd-mobile': true,
+      antd: true,
       dva: {
         hmr: true,
       },
