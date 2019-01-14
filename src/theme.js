@@ -1,4 +1,4 @@
 module.exports = {
-  primaryColor: '#FF7E41',
-  brandPrimaryTap: '#FF7E41',
+  primaryColor: '#1890ff',
+  brandPrimaryTap: '#1890ff',
 };

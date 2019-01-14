@@ -11,7 +11,7 @@
     "object-literal-sort-keys": false,
     "jsx-no-lambda": false,
     "no-implicit-dependencies": false,
-    "jsx-boolean-value": true,
+    "jsx-boolean-value": false,
     "global-require": true
   }
 }

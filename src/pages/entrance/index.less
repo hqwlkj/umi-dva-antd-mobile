@@ -1,0 +1,141 @@
+@import '~antd-mobile/dist/antd-mobile.less';
+
+.entranceBox {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 15px 20px;
+  text-align: left;
+  overflow-y: scroll;
+
+  .title {
+    padding-top: 30px;
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    letter-spacing: 12px;
+    margin: 8px auto 60px;
+  }
+
+  .select-item {
+    font-size: 14px;
+    color: #5a5a5a;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    display: block;
+    outline: none;
+    text-align: justify;
+    transition: all 0.1s linear;
+
+    &.opt-large {
+      padding: 20px 15px;
+    }
+
+    &.opt-selected {
+      color: @brand-primary;
+      border: 1px solid @brand-primary;
+    }
+  }
+
+  .bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    padding: 20px 20px;
+
+    :global {
+      .am-button {
+        flex: 1;
+        font-size: 14px;
+        font-weight: 400;
+
+        &:first-child {
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+}
+
+.modal-wrap {
+  :global {
+    .am-modal-transparent {
+      width: 340px;
+
+      .am-modal-content {
+        background-color: #f5f5f9;
+      }
+    }
+  }
+
+  .modal-container {
+    .closeBtn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+
+    .modal-header {
+      .avatar {
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+        margin: 15px auto;
+        text-align: center;
+        line-height: 85px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .name-wrap {
+        margin-bottom: 25px;
+      }
+    }
+
+    .modal-body {
+      font-size: 12px;
+      font-weight: 400;
+
+      .desc-item {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-items: flex-start;
+        margin: 5px 0;
+
+        .item-label {
+          width: 80px;
+        }
+
+        .item-value {
+          flex: 1;
+          text-align: left;
+
+          span {
+            color: @brand-primary;
+          }
+        }
+      }
+
+      .notice {
+        background: #fefcec;
+        color: #f76a24;
+        margin: 15px auto 0;
+        padding: 10px;
+        text-align: left;
+      }
+    }
+  }
+}

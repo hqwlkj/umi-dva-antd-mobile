@@ -1,0 +1,20 @@
+@import '~antd/lib/style/themes/default.less';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+  background: @layout-body-background;
+
+  .content {
+    padding: 0;
+    flex: 1;
+
+    :global {
+      /* 样式覆盖，解决移动端滚动问题，避免容器模拟滚动，都采用body滚动，以及自己封装的滚动容器 */
+
+
+    }
+  }
+}

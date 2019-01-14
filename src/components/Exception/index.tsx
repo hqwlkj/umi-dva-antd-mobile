@@ -1,6 +1,6 @@
-import React, { createElement } from "react";
-import classNames from "classnames";
 import { Button } from "antd";
+import classNames from "classnames";
+import React, { createElement } from "react";
 import config from "./typeConfig";
 
 const styles = require("./index.less");
@@ -20,7 +20,7 @@ export interface IExceptionProps {
 }
 
 class Exception extends React.PureComponent<IExceptionProps, any> {
-  static defaultProps = {
+  public static defaultProps = {
     backText: "back to home",
     redirect: "/"
   };
@@ -30,7 +30,7 @@ class Exception extends React.PureComponent<IExceptionProps, any> {
     this.state = {};
   }
 
-  render() {
+  public render() {
     const {
       className,
       backText,
