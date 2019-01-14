@@ -78,6 +78,6 @@ $ yarn build or npm run build
 我们非常欢迎你的贡献，你可以通过以下方式和我一起共建 :smiley:：
 
 - 通过 [Issue](https://github.com/hqwlkj/umi-dva-antd-mobile/issues) 报告 bug 或进行咨询。
-- 提交 [Pull Request](https://github.com/hqwlkj/umi-dva-antd-mobile/pulls) 改进 Pro 的代码。
+- 提交 [Pull Request](https://github.com/hqwlkj/umi-dva-antd-mobile/pulls) 改进代码。
 
 
