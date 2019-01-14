@@ -61,6 +61,8 @@ $ yarn build or npm run build
 ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) 
  :---: | :---: 
  H5 应用 | APP 应用 
+ 
+ demo 还在持续完善中。。。
 
 ## 支持环境
 
