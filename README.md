@@ -53,16 +53,23 @@ $ yarn build or npm run build
 ```
 更多命令可在[package.json](./package.json)中查看
 
-##DEMO
-<div style='display: flex;justify-content: row; align-items: center;'>
-<div style='flex:1'>
-![image](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png)
-<h5 align="center">H5 应用</h5>
-</div>
-<div style='flex:1'>
-![image](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/tabbar.png)
-<h5 align="center">APP 应用</h5>
-</div>
+
+## DEMO
+
+<div style="display: flex;justify-content: row; align-items: center;">
+  
+  <div style="flex:1">
+  
+   ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png)
+   <h5 align="center">H5 应用</h5> 
+  </div>
+  
+  <div style="flex:1">
+  
+  ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/tabbar.png)
+  <h5 align="center">APP 应用</h5>  
+  </div>
+  
 </div>
 
 ## 支持环境
