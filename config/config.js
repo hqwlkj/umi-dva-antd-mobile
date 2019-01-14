@@ -1,6 +1,7 @@
 // https://umijs.org/config/
 import pageRoutes from './router.config';
 import theme from '../src/theme';
+import webpackPlugin from './plugin.config';
 
 const plugins = [
   [
@@ -34,6 +35,7 @@ export default {
   define: {
     APP_TYPE: process.env.APP_TYPE || '',
   },
+  history: 'hash', // 默认是 browser
   plugins,
   //   exportStatic: {},
   // 路由配置
@@ -72,4 +74,5 @@ export default {
   manifest: {
     basePath: '/',
   },
+  chainWebpack: webpackPlugin,
 };

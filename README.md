@@ -53,7 +53,17 @@ $ yarn build or npm run build
 ```
 更多命令可在[package.json](./package.json)中查看
 
-
+##DEMO
+<div style='display: flex;justify-content: row; align-items: center;'>
+<div style='flex:1'>
+![image](https://github.com/hqwlkj/umi-dva-antd-mobile/tree/master/qrcode/h5.png)
+<h5 align="center">H5 应用</h5>
+</div>
+<div style='flex:1'>
+![image](https://github.com/hqwlkj/umi-dva-antd-mobile/tree/master/qrcode/tabbar.png)
+<h5 align="center">APP 应用</h5>
+</div>
+</div>
 
 ## 支持环境
 
@@ -62,6 +72,7 @@ $ yarn build or npm run build
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
 | --------- | --------- | --------- | --------- | --------- |
 | IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+
 
 ## 参与贡献
 
