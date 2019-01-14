@@ -55,7 +55,7 @@ $ yarn build or npm run build
 
 
 ## DEMO
-请使扫描下方二维码预览效果。
+请扫描下方二维码预览效果。
 
  ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) | 
 ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) 
