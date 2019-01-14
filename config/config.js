@@ -1,8 +1,6 @@
 // https://umijs.org/config/
-import path from 'path';
 import pageRoutes from './router.config';
 import theme from '../src/theme';
-import os from 'os';
 
 const plugins = [
   [
@@ -62,7 +60,6 @@ export default {
   outputPath: './dist',
   hash: true,
   alias: {
-    '@': path.resolve(__dirname, 'src'),
   },
   // proxy: {
   //   '/server/api/': {
