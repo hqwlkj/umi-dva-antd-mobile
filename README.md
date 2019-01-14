@@ -55,22 +55,12 @@ $ yarn build or npm run build
 
 
 ## DEMO
+请使扫描下方二维码预览效果。
 
-<div style="display: flex;justify-content: row; align-items: center;">
-  
-  <div style="flex:1">
-  
-   ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png)
-   <h5 align="center">H5 应用</h5> 
-  </div>
-  
-  <div style="flex:1">
-  
-  ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/tabbar.png)
-  <h5 align="center">APP 应用</h5>  
-  </div>
-  
-</div>
+ ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) | 
+![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) 
+ :---: | :---: 
+ H5 应用 | APP 应用 
 
 ## 支持环境
 
