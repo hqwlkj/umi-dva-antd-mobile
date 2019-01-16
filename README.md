@@ -57,6 +57,8 @@ $ yarn build or npm run build
 ## DEMO
 请扫描下方二维码预览效果。
 
+由于demo服务器当前不稳定，建议本地运行查看效果，谢谢
+
  ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) | 
 ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) 
  :---: | :---: 
