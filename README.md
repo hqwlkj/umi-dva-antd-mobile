@@ -19,7 +19,7 @@
     |   |-- pages                             # 业务页面入口和常用模板
     |   |-- e2e                               # 集成测试用例
     |   |-- global.less                       # 全局样式
-    |   |-- global.js                         # 全局 JS
+    |   |-- global.tsx                         # 全局 JS
     |   |-- theme.js                          
     |-- tests                                 # 测试工具
     |-- .gitignore                            # git忽略文件

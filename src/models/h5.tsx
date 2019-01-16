@@ -1,62 +1,78 @@
-import { queryPlate, queryQuestions, queryTestPapers, saveTestResult } from '@/services/api';
+// @ts-ignore
+import { queryChapter, queryQuestions, queryTestPapers, saveTestResult } from '@/services/h5';
+import { Toast } from 'antd-mobile';
 import { routerRedux } from 'dva/router';
 import LS from 'parsec-ls';
-import { Toast } from 'antd-mobile';
 
 export default {
   namespace: 'h5',
-  state: {},
-  effects: {
-    *fetch({ payload, callback }, { call, put }) {
-      const response = yield call(queryPlate, payload);
-      yield put({
-        type: 'saveChapterData',
-        payload: response.result || [],
-      });
-      if (callback) callback(response);
+  state: {
+    chapterData: [],
+    questions: [],
+    resultData: {
+      paperId: 0,
+      score: 0,
+      time: '00:00',
+      wrongTotal: 0,
+      isPass: false,
     },
-    *fetchQuestions({ payload, callback }, { call, put, select }) {
+  },
+  effects: {
+    * fetchChapter({ payload }, { call, put }) {
+      const response = yield call(queryChapter, payload);
+      yield put({
+        type: 'saveChapter',
+        payload: response,
+      });
+    },
+    * fetchQuestions({ payload, callback }, { call, put, select }) {
       const { chapterData } = yield select(state => state.global);
       const response = yield call(queryQuestions, payload);
       yield put({
         type: 'saveQuestionsData',
         payload: {
-          questions: response.result || [],
+          questions: response,
           chapterData,
         },
       });
-      if (callback) callback(response);
+      if (callback) {
+        callback(response);
+      }
       if (payload.type !== 'follow') {
         yield put(routerRedux.replace(`/paper/${payload.type}`));
       }
     },
-    *fetchTestPapers({ payload, callback }, { call, put, select }) {
+    * fetchTestPapers({ callback }, { call, put, select }) {
       Toast.loading('试卷生成中...');
-      const { chapterData } = yield select(state => state.global);
-      const response = yield call(queryTestPapers, payload);
+      const { chapterData } = yield select(state => state.h5);
+      const response = yield call(queryTestPapers);
       yield put({
         type: 'savePaperData',
         payload: {
-          ...response.result,
+          ...response,
           chapterData,
         },
       });
       Toast.hide();
-      if (callback) callback(response, true);
+      if (callback) {
+        callback(response, true);
+      }
     },
-    *submit({ payload, callback }, { call, put }) {
-      Toast.loading('提交试卷中...', 5 * 1000);
+    * submit({ payload, callback }, { call, put }) {
+      Toast.loading('提交试卷中...');
       const response = yield call(saveTestResult, payload);
       yield put({
         type: 'saveResult',
         payload: response.result || {},
       });
       Toast.hide();
-      if (callback) callback(response);
+      if (callback) {
+        callback(response);
+      }
       yield put(routerRedux.replace('/result'));
     },
-    *startTheExam({ payload }, { put, select }) {
-      const { questions, paper, chapterData } = yield select(state => state.global);
+    * startTheExam(_, { put, select }) {
+      const { questions, paper, chapterData } = yield select(state => state.h5);
       yield put({
         type: 'savePaperData',
         payload: {
@@ -65,11 +81,11 @@ export default {
           chapterData,
         },
       });
-      yield put(routerRedux.replace(`/paper/${payload.type}`));
+      yield put(routerRedux.replace(`/paper/test`));
     },
   },
   reducers: {
-    saveChapterData(state, { payload }) {
+    saveChapter(state, { payload }) {
       return {
         ...state,
         chapterData: payload,
@@ -91,13 +107,13 @@ export default {
     saveResult(state, { payload }) {
       let answers = [];
       let questions = [];
-      if (LS.getObj('drip-exam') !== null) {
-        const dripExam = LS.getObj('drip-exam');
-        answers = dripExam.answers || [];
-        questions = dripExam.questions || [];
+      if (LS.getObj('exam-test') !== null) {
+        const examTest = LS.getObj('exam-test');
+        answers = examTest.answers || [];
+        questions = examTest.questions || [];
       }
       const wrongIds = LS.getObj('wrong_ids');
-      LS.setObj('drip-exam-result', {
+      LS.setObj('exam-test-result', {
         answers,
         questions,
         result: {
@@ -105,21 +121,12 @@ export default {
           wrong_ids: wrongIds,
         },
       });
-      LS.remove('drip-exam');
+      LS.remove('exam-test');
       LS.remove('wrong_ids');
       return {
         ...state,
         resultData: payload,
       };
-    },
-  },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      return history.listen(({ pathname, query }) => {
-        if (pathname === '/users') {
-          dispatch({ type: 'fetch', payload: query });
-        }
-      });
     },
   },
 };

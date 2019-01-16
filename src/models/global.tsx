@@ -1,23 +1,24 @@
+// @ts-ignore
 import { query } from '@/services/api';
 
 export default {
   namespace: 'global',
-  state: {},
+  state: {
+    chapterData: [],
+  },
   effects: {
-    * fetch({ payload, callback }, { call, put }) {
+    * fetch({ payload }, { call, put }) {
       const response = yield call(query, payload);
       yield put({
         type: 'save',
-        payload: response.result || [],
+        payload: response,
       });
-      if (callback) callback(response);
     },
   },
   reducers: {
-    save(state, { payload }) {
+    save(state) {
       return {
         ...state,
-        chapterData: payload,
       };
     },
   },

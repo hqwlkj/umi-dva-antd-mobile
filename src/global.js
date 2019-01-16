@@ -1,6 +1,3 @@
-// 这里引用全局js
-import '@babel/polyfill';
-import React from 'react';
 import { Toast, Modal } from 'antd-mobile';
 import './global.less';
 

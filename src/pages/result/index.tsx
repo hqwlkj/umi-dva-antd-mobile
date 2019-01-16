@@ -1,43 +1,53 @@
-import { Button, Modal } from 'antd-mobile';
+import { Button } from 'antd-mobile';
+import { connect } from 'dva';
+import LS from 'parsec-ls';
 import React from 'react';
 import router from 'umi/router';
 
 const styles = require('./index.less');
 
-function closest(el, selector) {
-  const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
-  while (el) {
-    if (matchesSelector.call(el, selector)) {
-      return el;
-    }
-    el = el.parentElement;
-  }
-  return null;
-}
-
 interface IResultState {
-  visible: boolean;
   resultData: {
     score: number;
     time: string;
-    scoreDetail: [];
     isPass: boolean;
   }
 }
 
+@connect(({ h5, loading }) => ({
+  h5,
+  loading: loading.models.h5,
+}))
 class Result extends React.PureComponent<any, IResultState> {
   constructor(props) {
     super(props);
+    const { h5: { resultData: { score = 0, time = '00:00', isPass } } } = props;
     this.state = {
-      visible: false,
       resultData: {
-        score: 99.5, time: '12:56', scoreDetail: [], isPass: true,
+        score, time, isPass,
       },
+    };
+  }
+
+  public componentDidMount() {
+    if (LS.getObj('exam-test-result') === null) {
+      router.push('/');
+      return;
+    }
+    const { result } = LS.getObj('exam-test-result');
+    const { resultData } = this.state;
+    if (result) {
+      this.setState({
+        resultData: {
+          ...resultData,
+          ...result,
+        },
+      });
     }
   }
 
   public render() {
-    const { resultData: { score = 0, time = '00:00', scoreDetail = [], isPass }, visible } = this.state;
+    const { resultData: { score = 0, time = '00:00', isPass } } = this.state;
     return (
       <div className={styles.result}>
         <div className={styles.card}>
@@ -55,65 +65,15 @@ class Result extends React.PureComponent<any, IResultState> {
               }}
             >查看错题
             </Button>
-            {
-              scoreDetail.length > 0 ?
-                <div className={styles.buttonGroup}>
-                  <Button
-                    type='primary'
-                    onClick={() => {
-                      this.setState({
-                        visible: true,
-                      });
-                    }}
-                  >得分明细
-                  </Button>
-                  <Button
-                    type="primary"
-                    onClick={() => {
-                      router.push('/entrance');
-                    }}
-                  >返回首页
-                  </Button>
-                </div>
-                :
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    router.push('/entrance');
-                  }}
-                >返回首页
-                </Button>
-            }
+            <Button
+              type="primary"
+              onClick={() => {
+                router.push('/entrance');
+              }}
+            >返回首页
+            </Button>
           </div>
         </div>
-        <Modal
-          visible={visible}
-          transparent
-          wrapClassName={styles['modal-wrap']}
-          maskClosable={false}
-          onClose={() => this.onClose()}
-          title="得分明细"
-          footer={[{
-            text: '关闭', onPress: () => this.onClose(),
-          }]}
-          wrapProps={{ onTouchStart: this.onWrapTouchStart }}
-        >
-          <div style={{ height: 150, overflow: 'scroll' }}>
-            <div className={styles['modal-list-item']}>
-              <div className={styles['modal-list-col']}>板块名称</div>
-              <div className={styles['modal-list-col']}>及格分数</div>
-              <div className={styles['modal-list-col']}>得分</div>
-            </div>
-            {
-              scoreDetail.length > 0 && scoreDetail.map((item, index) => (
-                <div className={styles['modal-list-item']} key={index}>
-                  <div className={styles['modal-list-col']}>{item.chapterName}</div>
-                  <div className={styles['modal-list-col']}>{item.passScore}</div>
-                  <div className={styles['modal-list-col']}>{item.score}</div>
-                </div>))
-            }
-          </div>
-        </Modal>
       </div>
     );
   }
@@ -129,31 +89,37 @@ class Result extends React.PureComponent<any, IResultState> {
       <div className={styles.title}>很遗憾 <br/> 您没有通过考试</div>
       <img src={require('../../assets/h5/fail.jpg')} alt=""/>
     </>);
-
   };
-
-  private onWrapTouchStart = (e) => {
-    // fix touch to scroll background page on iOS
-    if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
-      return;
-    }
-    const pNode = closest(e.target, '.am-modal-content');
-    if (!pNode) {
-      e.preventDefault();
-    }
-  };
-
-  private onClose = () => {
-    this.setState({
-      visible: false,
-    });
-  };
-
   /**
    * 查看错题
    */
   private goToWrongPage = () => {
-    Modal.alert('此功能将在下一步的工作中补全', '谢谢您的期待');
+    const { dispatch } = this.props;
+    const examResult = LS.getObj('exam-test-result');
+    let data = [];
+    if (examResult !== null) {
+      const { result: { wrong_ids = [] }, questions = [], answers = [] } = examResult;
+      data = wrong_ids.map((id) => ({
+        ...questions.filter(x => x.id === id)[0] || {},
+        userAnswer: this.getUserSelectAnswer(answers, id),
+      })).filter(x => x !== null);
+    }
+    // 先获取一遍数据 避免 js 报错
+    dispatch({
+      type: 'h5/savePaperData',
+      payload: {
+        questions: data,
+        paper: LS.getObj('exam-paper') || {},
+      },
+    });
+    router.push('/paper/wrong');
+  };
+
+  private getUserSelectAnswer = (answers, id) => {
+    if (answers && answers.length > 0) {
+      return answers.filter(x => x.questionId === id)[0].answer;
+    }
+    return [];
   };
 
 }

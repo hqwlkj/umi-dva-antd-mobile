@@ -1,5 +1,6 @@
-import { Button, Modal, Toast } from 'antd-mobile';
+import { Button, Modal } from 'antd-mobile';
 import classnames from 'classnames';
+import { connect } from 'dva';
 import LS from 'parsec-ls';
 import React, { Fragment } from 'react';
 import Circle from 'react-circle';
@@ -7,140 +8,6 @@ import router from 'umi/router';
 import * as theme from '../../theme';
 
 const styles = require('./index.less');
-
-const questions: Array<{
-  id: number;
-  status: 'ONLINE' | 'OFFLINE';
-  description: string;
-  options: string;
-  answers: string;
-  chapterID: number;
-  sectionID: number;
-  wrongTimes: number;
-  testTimes: number;
-  createAt: string;
-  updateAt: string;
-}> = [{
-  'id': 570,
-  'status': 'ONLINE',
-  'description': '网约车车辆经营许可期限自车辆注册之日起不超过（）年。',
-  'options': '["7年", "8年", "9年", "10年"]',
-  'answers': '[1]',
-  'chapterID': 7,
-  'sectionID': 9,
-  'wrongTimes': 148,
-  'testTimes': 1026,
-  'createAt': '2018-12-26 15:44:59',
-  'updateAt': '2018-12-26 15:44:59',
-}, {
-  'id': 460,
-  'status': 'ONLINE',
-  'description': '请根据英语语音,选择正确答案:baggage',
-  'options': '["零钱", "行李", "等候", "车号"]',
-  'answers': '[1]',
-  'chapterID': 7,
-  'sectionID': 8,
-  'wrongTimes': 731,
-  'testTimes': 1130,
-  'createAt': '2018-12-26 15:44:41',
-  'updateAt': '2018-12-26 15:44:41',
-}, {
-  'id': 403,
-  'status': 'ONLINE',
-  'description': '驾驶出租汽车遇到窄路、坡道、急转弯处会车时，要低速慢行，必要时停车等待。',
-  'options': '["对", "错"]',
-  'answers': '[0]',
-  'chapterID': 1,
-  'sectionID': 4,
-  'wrongTimes': 300,
-  'testTimes': 408,
-  'createAt': '2018-12-26 15:44:29',
-  'updateAt': '2018-12-26 15:44:29',
-}, {
-  'id': 11,
-  'status': 'ONLINE',
-  'description': '出租汽车驾驶员注册有效期届满需继续从事出租汽车客运服务的,应当在有效期届满前（）内申请延续注册。',
-  'options': '["5日", "10日", "20日", "30日"]',
-  'answers': '[3]',
-  'chapterID': 1,
-  'sectionID': 2,
-  'wrongTimes': 415,
-  'testTimes': 808,
-  'createAt': '2018-12-26 15:43:21',
-  'updateAt': '2018-12-26 15:43:21',
-}, {
-  'id': 857,
-  'status': 'ONLINE',
-  'description': '当巡游车计程计价设备发生故障时，可以与乘客议价继续运营。',
-  'options': '["对", "错"]',
-  'answers': '[1]',
-  'chapterID': 7,
-  'sectionID': 12,
-  'wrongTimes': 539,
-  'testTimes': 674,
-  'createAt': '2018-12-26 15:45:49',
-  'updateAt': '2018-12-26 15:45:49',
-}, {
-  'id': 438,
-  'status': 'ONLINE',
-  'description': '出租汽车驾驶员应自觉遵守法律法规和服务规范，牢固树立（）的观念。',
-  'options': '["经济效益第一", "安全运营，优质服务", "全运营与经济利益并重", "效率至上，快速运送"]',
-  'answers': '[1]',
-  'chapterID': 1,
-  'sectionID': 5,
-  'wrongTimes': 166,
-  'testTimes': 604,
-  'createAt': '2018-12-26 15:44:34',
-  'updateAt': '2018-12-26 15:44:34',
-}, {
-  'id': 715,
-  'status': 'ONLINE',
-  'description': '新华通讯社位于“前三门大街”沿线，向西临近中央音乐学院。',
-  'options': '["对", "错"]',
-  'answers': '[0]',
-  'chapterID': 7,
-  'sectionID': 11,
-  'wrongTimes': 10,
-  'testTimes': 875,
-  'createAt': '2018-12-26 15:45:24',
-  'updateAt': '2018-12-26 15:45:24',
-}, {
-  'id': 249,
-  'status': 'ONLINE',
-  'description': '无障碍出租汽车应保证充足空间安放轮椅。',
-  'options': '["对", "错"]',
-  'answers': '[0]',
-  'chapterID': 1,
-  'sectionID': 3,
-  'wrongTimes': 947,
-  'testTimes': 1824,
-  'createAt': '2018-12-26 15:44:03',
-  'updateAt': '2018-12-26 15:44:03',
-}, {
-  'id': 889,
-  'status': 'ONLINE',
-  'description': '巡游车和网约车均应当依法经营、诚实守信、市场定价、优质服务。',
-  'options': '["对", "错"]',
-  'answers': '[1]',
-  'chapterID': 1,
-  'sectionID': 6,
-  'wrongTimes': 865,
-  'testTimes': 1603,
-  'createAt': '2018-12-26 16:00:20',
-  'updateAt': '2018-12-26 16:00:20',
-}, {
-  'id': 594,
-  'status': 'ONLINE',
-  'description': '纯电动汽车从电网取电获得电力，并通过动力蓄电池向驱动电机提供电能驱动汽车行驶。',
-  'options': '["对", "错"]',
-  'answers': '[0]',
-  'chapterID': 7,
-  'sectionID': 10,
-  'wrongTimes': 991,
-  'testTimes': 1911,
-  'createAt': '2018-12-26 15:45:03',
-  'updateAt': '2018-12-26 15:45:03',
-}];
 
 interface IPaperState {
   current: number; // 当前题目下标
@@ -152,7 +19,31 @@ interface IPaperState {
   type: string;
 }
 
-class index extends React.PureComponent<any, IPaperState> {
+interface ITextPaperProps {
+  dispatch?: any;
+  h5: {
+    questions: Array<{
+      id: number;
+      status: 'ONLINE' | 'OFFLINE';
+      description: string;
+      options: string[];
+      answers: number[];
+      userAnswer?: number[];
+      chapterID: number;
+      sectionID: number;
+      wrongTimes: number;
+      testTimes: number;
+      createAt: string;
+      updateAt: string;
+    }>;
+  }
+}
+
+@connect(({ h5, loading }) => ({
+  h5,
+  loading: loading.models.h5,
+}))
+class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -163,25 +54,29 @@ class index extends React.PureComponent<any, IPaperState> {
     };
   }
 
+
+  public componentDidMount() {
+    const { type } = this.state;
+    if (type === '') {
+      this.loadWrongQuestions();
+    }
+  }
+
+
   /**
    * 获取题型
    * @param answers
    * @param options
    * @returns {string}
    */
-    // @ts-ignore
-  private getQuestionsType = (answers: string, options: string) => {
+  private getQuestionsType = (answers, options) => {
     if (options && answers) {
-      const a = JSON.parse(answers || '[]');
-      const o = JSON.parse(options || '[]');
-      if (o.length === 2 && a.length === 1) {
+      if (options.length === 2 && answers.length === 1) {
         return '判断题';
-      }
-      if (o.length > 2 && a.length === 1) {
-        return '单选题';
-      }
-      if (o.length > 2 && a.length > 1) {
+      } else if (options.length > 2 && answers.length > 1) {
         return '多选题';
+      } else {
+        return '单选题';
       }
     } else {
       return '单选题';
@@ -209,19 +104,29 @@ class index extends React.PureComponent<any, IPaperState> {
    */
   private submitTestResult = async () => {
     await this.handleFilterWrongQuestionsId();
-    Toast.loading('提交答案中...');
-    setTimeout(() => {
-      Toast.hide();
-      router.push('/result');
-    }, 3 * 1000);
+    const { dispatch } = this.props;
+    let answers = [];
+    if (LS.getObj('exam-test') !== null) {
+      const examTest = LS.getObj('exam-test');
+      answers = examTest.answers || [];
+    }
+
+    dispatch({
+      type: 'h5/submit',
+      payload: {
+        paperId: LS.getObj('exam-paper').id,
+        answers,
+      },
+    });
   };
 
   /**
    * 获取试卷中的错题 ID 信息
    */
   private handleFilterWrongQuestionsId = () => {
-    if (LS.getObj('drip-exam') != null) {
-      const { answers = [] } = LS.getObj('drip-exam');
+    const { h5: { questions = [] } } = this.props;
+    if (LS.getObj('exam-test') != null) {
+      const { answers = [] } = LS.getObj('exam-test');
       if (questions && questions.length > 0) {
         if (answers && answers.length > 0) {
           // 有用户选择的答案时
@@ -229,7 +134,7 @@ class index extends React.PureComponent<any, IPaperState> {
           answers.map(item => {
             if (item && item.answer) {
               const question = questions.filter(x => x.id === item.questionId)[0];
-              const qanswers = JSON.parse(question.answers || '[]')
+              const qanswers = question.answers
                 .sort()
                 .join(',');
               const answerStr = item.answer.sort().join(',');
@@ -264,6 +169,7 @@ class index extends React.PureComponent<any, IPaperState> {
   private getPaperContent = () => {
     let { current, selected } = this.state;
     const { answers, type } = this.state;
+    const { h5: { questions } } = this.props;
     const question = questions.length > 0 ? questions[current] : undefined;
     const questionsType =
       question !== undefined ? this.getQuestionsType(question.answers, question.options) : '--';
@@ -280,7 +186,7 @@ class index extends React.PureComponent<any, IPaperState> {
                   {
                     text: '确认交卷',
                     onPress: () => {
-                      LS.setObj('drip-exam', { current, questions, answers });
+                      LS.setObj('exam-test', { current, questions, answers });
                       this.submitTestResult();
                     },
                   },
@@ -301,13 +207,14 @@ class index extends React.PureComponent<any, IPaperState> {
                   {question.description || '--'}
                 </div>
                 <div className={styles.options}>
-                  {JSON.parse(question.options || '[]').map((item, index) => (
+                  {question.options.map((item, index) => (
                     <div
-                      key={`option-${item.id}`}
+                      key={`option-${index}`}
                       className={classnames(styles.option, {
                         [styles.correct]:
                         (type === 'preview' || type === 'wrong') &&
-                        JSON.parse(question.answers || '[]').filter(x => x === index).length > 0,
+                        question.answers.filter(x => x === index).length > 0,
+                        [styles['opt-selected-wrong']]: type === 'wrong' && question.userAnswer.filter(x => x === index).length > 0,
                         [styles['opt-selected']]:
                         type === 'test' && (selected.filter(x => x === index) || []).length > 0,
                       })}
@@ -399,7 +306,7 @@ class index extends React.PureComponent<any, IPaperState> {
                   });
                   this.setState({ current: (current += 1), selected: [], answers }, () => {
                     // TODO: 将本次考试信息 存储在本地
-                    LS.setObj('drip-exam', { current, questions, answers });
+                    LS.setObj('exam-test', { current, questions, answers });
                   });
                 }
               } else if (type === 'test') {
@@ -421,6 +328,7 @@ class index extends React.PureComponent<any, IPaperState> {
   };
 
   public render() {
+    const { h5: { questions } } = this.props;
     return (
       <div className={styles['test-paper']}>
         {questions && questions.length > 0 ? (
@@ -447,6 +355,34 @@ class index extends React.PureComponent<any, IPaperState> {
       </div>
     );
   }
+
+  private loadWrongQuestions = () => {
+    const { dispatch } = this.props;
+    const examResult = LS.getObj('exam-test-result');
+    let data = [];
+    if (examResult !== null) {
+      const { result: { wrong_ids = [] }, questions = [], answers = [] } = examResult;
+      data = wrong_ids.map((id) => ({
+        ...questions.filter(x => x.id === id)[0] || {},
+        userAnswer: this.getUserSelectAnswer(answers, id),
+      })).filter(x => x !== null);
+    }
+    // 先获取一遍数据 避免 js 报错
+    dispatch({
+      type: 'h5/savePaperData',
+      payload: {
+        questions: data,
+        paper: LS.getObj('exam-paper') || {},
+      },
+    });
+  };
+
+  private getUserSelectAnswer = (answers, id) => {
+    if (answers && answers.length > 0) {
+      return answers.filter(x => x.questionId === id)[0].answer;
+    }
+    return [];
+  };
 }
 
-export default index;
+export default Index;

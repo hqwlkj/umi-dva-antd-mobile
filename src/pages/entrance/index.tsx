@@ -1,12 +1,18 @@
-import { Button, Icon, Modal, Picker, Toast } from 'antd-mobile';
+import { Button, Icon, Modal, Picker } from 'antd-mobile';
 import classNames from 'classnames';
+import { connect } from 'dva';
 import LS from 'parsec-ls';
 import React from 'react';
-import router from 'umi/router';
 import * as theme from '../../theme';
 
 const styles = require('./index.less');
 
+interface IChapterData {
+  parentId?: string | number;
+  value: string | number;
+  label: React.ReactNode;
+  children?: IChapterData[]
+}
 
 interface IEntranceState {
   selected: number;
@@ -15,7 +21,19 @@ interface IEntranceState {
   visible: boolean;
 }
 
-class index extends React.Component<any, IEntranceState> {
+interface IEntranceProps {
+  dispatch?: any;
+  loading?: boolean;
+  h5: {
+    chapterData: IChapterData[] | IChapterData[][]
+  }
+}
+
+@connect(({ h5, loading }) => ({
+  h5,
+  loading: loading.models.h5,
+}))
+class Index extends React.Component<IEntranceProps, IEntranceState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,12 +46,8 @@ class index extends React.Component<any, IEntranceState> {
 
   public render() {
     const { selected, chapterValue, chapterLabel, visible } = this.state;
-    // @TODO 数据 都从 mock 中生成
+    const { h5: { chapterData = [] } } = this.props;
     const questionTotal = 100;
-    const chapterDataOptions = [{ label: '章节名称1', value: '1' }, { label: '章节名称2', value: '2' }, {
-      label: '章节名称3',
-      value: '3',
-    }, { label: '章节名称4', value: '4' }];
     return (
       <div className={styles.entranceBox}>
         <div className={styles.title}>网约车从业资格证</div>
@@ -56,7 +70,7 @@ class index extends React.Component<any, IEntranceState> {
           })}
           onClick={() => {
             this.setState({ selected: 7, chapterValue: [], chapterLabel: '请选择章节' }, () => {
-              this.getChapterData(7);
+              this.getChapterData(2);
             });
           }}
         >
@@ -64,14 +78,14 @@ class index extends React.Component<any, IEntranceState> {
         </div>
         <Picker
           extra="请选择(可选)"
-          data={chapterDataOptions}
+          data={chapterData}
           cols={1}
           title="请选择章节"
           value={chapterValue}
           onOk={e => {
             this.setState({
               chapterValue: e,
-              chapterLabel: chapterDataOptions.filter(x => x.value === e[0])[0].label,
+              chapterLabel: chapterData.filter(x => x.value === e[0])[0].label,
             });
           }}
         >
@@ -204,24 +218,35 @@ class index extends React.Component<any, IEntranceState> {
    */
   public getPaper = step => {
     const { selected, chapterValue } = this.state;
+    const { dispatch } = this.props;
     if (step === 2 && (selected === -1 || chapterValue.length === 0)) {
       Modal.alert('请选择地区和章节', '');
       return;
     }
     // @ts-ignore
-    LS.setObj('drip-region', { chapterId: selected, sectionId: chapterValue[0] });
+    const sectionId = chapterValue[0];
+    LS.setObj('exam-region', { chapterId: selected, sectionId });
     if (step === 2) {
       // @TODO 生成考题预习
-      router.push('/paper/preview');
+      dispatch({
+        type: 'h5/fetchQuestions',
+        payload: {
+          chapterID: selected,
+          sectionID: sectionId,
+          type: 'preview',
+        },
+      });
     } else {
       // @TODO 生成考试试卷
-      this.setState({
-        visible: true,
-      },()=>{
-        // @TODO 将生成的试卷信息 存储在本地缓存中
-        LS.setObj('drip-exam-paper', {});
+      dispatch({
+        type: 'h5/fetchTestPapers',
+        callback: (response, modalVisible) => {
+          this.setState({
+            visible: modalVisible,
+          });
+          LS.setObj('exam-paper', response.paper);
+        },
       });
-
     }
   };
 
@@ -230,17 +255,21 @@ class index extends React.Component<any, IEntranceState> {
    */
   private getChapterData = (parentID: number) => {
     const { dispatch } = this.props;
-    console.log('dispatch', dispatch);
-    Toast.loading('加载中...');
+    dispatch({
+      type: 'h5/fetchChapter',
+      payload: { parentID },
+    });
   };
 
   /**
    * 开始考试
    */
   private startTheExam = () => {
-    console.log('');
-    router.push('/paper/test');
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'h5/startTheExam',
+    });
   };
 }
 
-export default index;
+export default Index;

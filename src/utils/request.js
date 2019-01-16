@@ -2,7 +2,6 @@ import fetch from 'dva/fetch';
 import { Toast } from 'antd-mobile';
 import router from 'umi/router';
 import hash from 'hash.js';
-import _ from 'lodash';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -61,9 +60,6 @@ const cachedSave = (response, hashcode) => {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, option) {
-  if (!_.startsWith(url, 'http') || !_.startsWith(url, 'https')) {
-    url = `https://develop.parsec.com.cn/drip_exam${url.replace(new RegExp('^/api', 'g'), '')}`;
-  }
   const options = {
     expirys: true,
     ...option,
@@ -79,7 +75,7 @@ export default function request(url, option) {
     .digest('hex');
 
   const defaultOptions = {
-    // credentials: 'include',
+    credentials: 'include',
   };
   const newOptions = { ...defaultOptions, ...options };
   if (
