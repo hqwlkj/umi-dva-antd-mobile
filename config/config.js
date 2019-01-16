@@ -15,11 +15,16 @@ const plugins = [
         loadingComponent: './components/PageLoading/index',
         webpackChunkName: true,
       },
+      pwa: {
+        workboxPluginMode: 'InjectManifest',
+        workboxOptions: {
+          importWorkboxFrom: 'local',
+        },
+      },
       title: {
         defaultTitle: 'umi-dva-antd-mobile',
       },
       dll: false,
-      pwa: false,
       hd: false,
       routes: {
         exclude: [],
