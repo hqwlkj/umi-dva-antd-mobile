@@ -4,7 +4,7 @@
 
 部分代码及功能参考于 [Ant Design pro](https://pro.ant.design/)
 
-已经支持微信开发，相见 [wx](https://github.com/hqwlkj/umi-dva-antd-mobile/tree/wx) 分支。
+:clap: 已经支持微信开发，相见 [wx](https://github.com/hqwlkj/umi-dva-antd-mobile/tree/wx) 分支。
 
 ## 目录结构
 
