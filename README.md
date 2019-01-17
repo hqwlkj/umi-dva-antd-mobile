@@ -4,6 +4,8 @@
 
 部分代码及功能参考于 [Ant Design pro](https://pro.ant.design/)
 
+已经支持微信开发，相见 `wx` 分支。
+
 ## 目录结构
 
     |-- config                                # umi 配置，包含路由，构建等配置
