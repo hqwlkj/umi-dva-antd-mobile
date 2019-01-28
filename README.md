@@ -55,6 +55,9 @@ $ yarn build or npm run build
 ```
 更多命令可在[package.json](./package.json)中查看
 
+## 线上项目预览地址
+1、[蔚来汽车H5活动](https://h5.parsec.com.cn/weilai/) 建议在手机浏览器或者微信浏览器预览。
+
 
 ## DEMO
 请扫描下方二维码预览效果。
