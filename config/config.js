@@ -66,15 +66,19 @@ export default {
   },
   outputPath: './dist',
   hash: true,
-  alias: {
+  alias: {},
+  proxy: {
+    '/server/api/': {
+      target: 'https://preview.pro.ant.design/',
+      changeOrigin: true,
+      pathRewrite: { '^/server': '' },
+    },
+    '/wx/api/': {
+      target: 'https://games.parsec.com.cn/',
+      changeOrigin: true,
+      pathRewrite: { '^/wx/api': '' },
+    },
   },
-  // proxy: {
-  //   '/server/api/': {
-  //     target: 'https://preview.pro.ant.design/',
-  //     changeOrigin: true,
-  //     pathRewrite: { '^/server': '' },
-  //   },
-  // },
   ignoreMomentLocale: true,
   manifest: {
     basePath: '/',

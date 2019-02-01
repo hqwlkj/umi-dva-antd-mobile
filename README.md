@@ -4,6 +4,8 @@
 
 部分代码及功能参考于 [Ant Design pro](https://pro.ant.design/)
 
+:clap: 已经支持微信开发，相见 [wx](https://github.com/hqwlkj/umi-dva-antd-mobile/tree/wx) 分支。
+
 ## 目录结构
 
     |-- config                                # umi 配置，包含路由，构建等配置
@@ -52,6 +54,9 @@ $ yarn build or npm run build
 
 ```
 更多命令可在[package.json](./package.json)中查看
+
+## 线上项目预览地址
+1、[蔚来汽车H5活动](https://h5.parsec.com.cn/weilai/) 建议在手机浏览器或者微信浏览器预览。
 
 
 ## DEMO

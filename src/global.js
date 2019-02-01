@@ -1,5 +1,30 @@
 import { Toast, Modal } from 'antd-mobile';
+import { setAuthority } from '@/utils/authority';
+import initWx from '@/utils/wx';
+import debug from '@/utils/debug';
 import './global.less';
+
+setAuthority('admin');
+
+function isWeixn() {
+  const ua = navigator.userAgent.toLowerCase();
+  return ua.includes('micromessenger');
+}
+
+if (!isWeixn()) {
+  alert('请在微信客户端打开');
+  window.location.replace('#/404');
+} else {
+  debug().then(() => {
+    initWx({
+      title: '“盐值担当”2018城区形象表情包大赛',
+      imgUrl: 'https://h5.parsec.com.cn/common/emoticon-icon.png',
+      isNeedLogin: true,
+      desc: '盐田城区形象表情包大赛，万元奖金等你拿',
+      openid: process.env.NODE_ENV === 'development' ? 'oEgayjggrU06oORZJVeFUJ_KF1Mk' : undefined,
+    });
+  });
+}
 
 // Notify user if offline now
 window.addEventListener('sw.offline', () => {

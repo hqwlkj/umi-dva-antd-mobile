@@ -85,7 +85,7 @@ export default [
           },
         ],
       },
-      { component: '404' },
+      { path: '/404', component: '404' },
     ],
   },
 ];
