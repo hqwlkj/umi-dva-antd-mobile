@@ -1,0 +1,66 @@
+@import '../../../animation.less';
+
+.second-page-component {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: transparent;
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 584px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: url('../../../assets/innerPage/second-page-bg.png') center top no-repeat;
+    background-size: 100%;
+    animation: fadeIn 1.5s 0.5s alternate both;
+    z-index: 1;
+  }
+
+  .step-room {
+    position: absolute;
+    bottom: 67px;
+    height: 668px;
+    width: 100%;
+    background: url('../../../assets/innerPage/step/step.png') center center no-repeat;
+    background-size: cover;
+    z-index: 1;
+    animation: fadeInRight 1s 1s alternate;
+    animation-fill-mode: both;
+
+    &:before {
+      content: '';
+      width: 304px;
+      height: 413px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: url('../../../assets/innerPage/step/step-bg.png') center center no-repeat;
+      background-size: cover;
+      animation: fadeInDown 0.3s 1.5s alternate;
+      animation-fill-mode: both;
+    }
+
+    .person {
+      position: absolute;
+      width: 30px;
+      height: 109px;
+      top: 147px;
+      left: 370px;
+      display: none;
+      animation: slideInLeft 8s 3s alternate;
+      animation-fill-mode: both;
+    }
+
+    .speaker {
+      position: absolute;
+      width: 50px;
+      height: 100px;
+      left: 258px;
+      bottom: 298px;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import '../../../animation.less';
+
+.fives-page-component {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: transparent;
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 578px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: url('../../../assets/innerPage/fives-page-bg.png') center top no-repeat;
+    background-size: cover;
+    animation: fadeIn 1.5s 0.5s alternate both;
+  }
+
+  .taking-wrapper {
+    position: absolute;
+    bottom: 93px;
+    width: 100%;
+    height: 599px;
+    background: url('../../../assets/innerPage/fives-floor-bg.png') right bottom no-repeat;
+    background-size: 100%;
+    z-index: 1;
+    animation: fadeIn 1.5s 0.5s alternate;
+    animation-fill-mode: both;
+
+    .stool {
+      width: 66px;
+      height: 82px;
+      position: absolute;
+      left: 280px;
+      bottom: 292px;
+      z-index: 1;
+    }
+
+    .car {
+      width: 388px;
+      height: 267px;
+      position: absolute;
+      left: 290px;
+      top: 60px;
+      animation: fadeIn 2s 1.5s alternate;
+      animation-fill-mode: both;
+    }
+
+    .car-wheel {
+      width: 38px;
+      height: 150px;
+      position: absolute;
+      left: 250px;
+      top: 89px;
+      background: url('../../../assets/innerPage/gif/test-01.png') no-repeat;
+      animation: wheel_run 5s steps(1, start) infinite;
+    }
+
+    .taking {
+      width: 221px;
+      height: 281px;
+      position: absolute;
+      left: 295px;
+      bottom: 93px;
+      z-index: 10;
+      animation: fadeIn 3.5s 3.2s alternate;
+      animation-fill-mode: both;
+    }
+  }
+}
+
+@keyframes wheel_run {
+  0% {
+    background-position: 0 0;
+  }
+  5.88% {
+    background-position: -47px 0;
+  }
+  11.67% {
+    background-position: -110px 0;
+  }
+}

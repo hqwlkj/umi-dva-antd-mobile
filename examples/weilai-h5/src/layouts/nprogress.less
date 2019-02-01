@@ -1,0 +1,78 @@
+/*
+ * @Author: Jan-superman 
+ * @Date: 2018-11-08 00:14:11 
+ * @Last Modified by: superman
+ * @Last Modified time: 2018-12-24 23:31:46
+ */
+
+@import '~antd-mobile/dist/antd-mobile.less';
+
+:global {
+  #nprogress {
+    pointer-events: none;
+
+    .bar {
+      background: @brand-primary;
+      position: fixed;
+      z-index: 1024;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 4px;
+    }
+
+    .peg {
+      display: block;
+      position: absolute;
+      right: 0;
+      width: 100px;
+      height: 100%;
+      opacity: 1;
+      transform: rotate(3deg) translate(0, -4);
+    }
+
+    .spinner {
+      display: block;
+      position: fixed;
+      z-index: 1031;
+      top: 15px;
+      right: 15px;
+    }
+
+    .spinner-icon {
+      width: 18px;
+      height: 18px;
+      box-sizing: border-box;
+      border: solid 2px transparent;
+      border-top-color: @brand-primary;
+      border-left-color: @brand-primary;
+      border-radius: 50%;
+
+      :local {
+        animation: nprogress-spinner 400ms linear infinite;
+      }
+    }
+  }
+
+  .nprogress-custom-parent {
+    overflow: hidden;
+    position: relative;
+
+    #nprogress {
+      .bar,
+      .spinner {
+        position: absolute;
+      }
+    }
+  }
+}
+@keyframes nprogress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

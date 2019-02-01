@@ -1,0 +1,294 @@
+@import '../../../animation.less';
+
+.first-page-component {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: transparent;
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 372px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: url('../../../assets/innerPage/first-page-bottom-bg.png') center bottom no-repeat;
+    background-size: 100%;
+  }
+
+  .logo {
+    width: 84px;
+    height: 76px;
+    position: absolute;
+    pointer-events: none;
+    top: 76px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dig-dipper-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: url('../../../assets/innerPage/first-page-top-bg.png') center top no-repeat;
+    background-size: 100%;
+    animation: fadeIn 1.5s 0.3s alternate both;
+
+    .star {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      position: absolute;
+      background: #fff;
+      box-shadow: 0 0 4px 2px #fff;
+      animation: fadeIn 4s 0.3s alternate forwards;
+      display: none;
+
+      &:nth-child(1) {
+        left: 207px;
+        top: 355px;
+
+        &:after {
+          content: '';
+          width: 53px;
+          height: 42px;
+          position: absolute;
+          left: 0;
+          background: url('../../../assets/innerPage/star/star-line-01.png') center center no-repeat;
+          background-size: cover;
+        }
+      }
+
+      &:nth-child(2) {
+        left: 260px;
+        top: 397px;
+
+        &:after {
+          content: '';
+          width: 75px;
+          height: 34px;
+          position: absolute;
+          bottom: 0;
+          background: url('../../../assets/innerPage/star/star-line-02.png') center center no-repeat;
+          background-size: cover;
+        }
+      }
+
+      &:nth-child(3) {
+        left: 335px;
+        top: 367px;
+
+        &:after {
+          content: '';
+          width: 23px;
+          height: 58px;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          background: url('../../../assets/innerPage/star/star-line-06.png') center center no-repeat;
+          background-size: cover;
+        }
+      }
+
+      &:nth-child(4) {
+        left: 313px;
+        top: 307px;
+
+        &:after {
+          content: '';
+          width: 52px;
+          height: 40px;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          background: url('../../../assets/innerPage/star/star-line-03.png') center center no-repeat;
+          background-size: cover;
+        }
+      }
+
+      &:nth-child(5) {
+        left: 365px;
+        top: 269px;
+
+        &:after {
+          content: '';
+          width: 93px;
+          height: 29px;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          background: url('../../../assets/innerPage/star/star-line-04.png') center center no-repeat;
+          background-size: cover;
+        }
+      }
+
+      &:nth-child(6) {
+        left: 455px;
+        top: 242px;
+
+        &:after {
+          content: '';
+          width: 77px;
+          height: 29px;
+          position: absolute;
+          left: 0;
+          bottom: -2px;
+          background: url('../../../assets/innerPage/star/star-line-04.png') center center no-repeat;
+          background-size: cover;
+        }
+      }
+
+      &:nth-child(7) {
+        left: 535px;
+        top: 220px;
+      }
+    }
+  }
+
+  .innerContent {
+    position: absolute;
+    top: 228px;
+    width: 100%;
+    height: 550px;
+    text-align: center;
+    z-index: 10;
+
+    p {
+      color: #f2f2f2;
+      font-size: 36px;
+      font-weight: 400;
+      margin-bottom: 15px;
+
+      &:nth-child(3) {
+        color: #17c2c2;
+      }
+
+      &:nth-child(4) {
+        color: #b8e8eb;
+      }
+
+      &:nth-child(5) {
+        color: #b8e8eb;
+        font-size: 26px;
+        margin-top: 130px;
+      }
+    }
+
+    .radioButtons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-items: center;
+      justify-content: center;
+      margin-top: 45px;
+
+      .radioBtn {
+        width: 93px;
+        color: #00bcbc;
+        font-size: 38px;
+        margin: 0 85px;
+
+        .icon {
+          width: 95px;
+          height: 95px;
+          position: relative;
+          margin-bottom: 15px;
+
+          &:before {
+            content: '';
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 8px solid #00bcbc;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+          }
+
+          .male {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            &:before {
+              content: '';
+              position: absolute;
+              right: 0;
+              width: 100%;
+              height: 8px;
+              background: #00bcbc;
+              border-radius: 15px;
+            }
+
+            &:after {
+              content: '';
+              position: absolute;
+              right: 0;
+              width: 8px;
+              height: 100%;
+              background: #00bcbc;
+              border-radius: 15px;
+            }
+          }
+
+          .female {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: rotate(45deg);
+
+            &:before {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 100%;
+              height: 8px;
+              background: #00bcbc;
+              border-radius: 15px;
+            }
+
+            &:after {
+              content: '';
+              position: absolute;
+              left: 50%;
+              width: 8px;
+              height: 100%;
+              background: #00bcbc;
+              border-radius: 15px;
+              transform: translateX(-50%);
+            }
+          }
+        }
+
+        &.selected {
+          color: #fff;
+          text-shadow: 0 0 2px #ccfffe;
+
+          .icon {
+            &:before {
+              border-color: #fff;
+              box-shadow: 0 0 2px #ccfffe;
+            }
+
+            .male,
+            .female {
+              &:before,
+              &:after {
+                background: #fff;
+                box-shadow: 0 0 2px #ccfffe;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

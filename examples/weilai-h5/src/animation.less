@@ -1,0 +1,321 @@
+@keyframes fadeInUp {
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp-01 {
+  0% {
+    transform: translate3d(0, 200%, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes flash {
+  0%,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown-01 {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0) translateX(-50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0) translateX(-50%);
+  }
+}
+
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes flipInX {
+  0% {
+    transform: perspective(400px) rotateX(90deg) translateX(-50%);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotateX(-20deg) translateX(-50%);
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotateX(10deg) translateX(-50%);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotateX(-5deg) translateX(-50%);
+  }
+
+  to {
+    transform: perspective(400px) translateX(-50%);
+  }
+}
+
+@keyframes rotateIn {
+  0% {
+    transform-origin: center;
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+
+  to {
+    transform-origin: center;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translate3d(-150%, -150%, 0);
+    visibility: visible;
+    opacity: 0;
+  }
+
+  to {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft-01 {
+  0% {
+    transform: translate3d(-100%, -80%, 0);
+    visibility: visible;
+    opacity: 0;
+  }
+
+  to {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft-02 {
+  0% {
+    transform: translate3d(-400%, 0, 0);
+    visibility: visible;
+    opacity: 0;
+  }
+
+  to {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%,
+  to {
+    transform: translateZ(0);
+  }
+
+  10%,
+  30%,
+  50% {
+    transform: rotate(40deg);
+  }
+  70%,
+  90% {
+    transform: rotate(10deg) translate3d(-50px, -20px, 0);
+    opacity: 1;
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(50px, 20px, 0) rotate(-10deg);
+  }
+}
+
+@keyframes swing {
+  20% {
+    transform: rotate(15deg);
+  }
+
+  40% {
+    transform: rotate(-10deg);
+  }
+
+  60% {
+    transform: rotate(5deg);
+  }
+
+  80% {
+    transform: rotate(-5deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translateZ(0);
+  }
+}
+
+@keyframes slideInTopRight {
+  0% {
+    transform: translate3d(100%, -50%, 0);
+    visibility: visible;
+    opacity: 0;
+  }
+
+  to {
+    transform: translateZ(0);
+    z-index: 2;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform-origin: center;
+    transform: rotate(-360deg);
+  }
+
+  to {
+    transform-origin: center;
+    transform: rotate(360deg);
+  }
+}
+
+.pageInLeft {
+  animation-name: fadeInLeft;
+}
+
+.pageInRight {
+  animation-name: fadeInRight;
+}
+
+.pageOutLeft {
+  animation-name: fadeOutLeft;
+}
+
+.pageOutRight {
+  animation-name: fadeOutRight;
+}

@@ -1,0 +1,77 @@
+@import '../../../animation.less';
+
+.six-page-component {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: transparent;
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 578px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: url('../../../assets/innerPage/fives-page-bg.png') center top no-repeat;
+    background-size: cover;
+    animation: fadeIn 1.5s 0.5s alternate both;
+  }
+
+  .drone {
+    width: 111px;
+    height: 69px;
+    position: absolute;
+    left: 111px;
+    bottom: 588px;
+    z-index: 2;
+    animation: fadeInUp-01 3s 2s alternate both, shake 20s 3.5s infinite forwards;
+  }
+
+  .inner-wrapper {
+    width: 100%;
+    height: 698px;
+    position: absolute;
+    bottom: 60px;
+    background: url('../../../assets/innerPage/six-inner-bg.png') right bottom no-repeat;
+    background-size: 100%;
+    animation: fadeIn 1.5s 0.5s alternate;
+    animation-fill-mode: both;
+    z-index: 1;
+
+    .operator {
+      width: 38px;
+      height: 116px;
+      position: absolute;
+      left: 434px;
+      bottom: 349px;
+
+      .animate & {
+        animation: fadeIn 1.5s 1.3s alternate;
+        animation-fill-mode: both;
+      }
+    }
+
+    .audience {
+      width: 289px;
+      height: 278px;
+      position: absolute;
+      left: 169px;
+      bottom: 119px;
+      animation: fadeIn 1.5s 1.5s alternate;
+      animation-fill-mode: both;
+    }
+
+    .audience-01 {
+      width: 32px;
+      height: 125px;
+      position: absolute;
+      left: 169px;
+      bottom: 215px;
+      display: none;
+      animation: slideInLeft-02 5s 3.5s alternate;
+      animation-fill-mode: both;
+    }
+  }
+}
