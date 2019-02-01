@@ -29,24 +29,12 @@ export default [
       {
         path: '/tabbar/friend',
         title: 'Friend',
-        component: '/tabbar/Koubei',
+        component: '/tabbar/Friend',
         iconName: 'friend',
       },
       {
         path: '/tabbar/my',
         title: 'My',
-        component: '/tabbar/Koubei',
-        iconName: 'my',
-      },
-      {
-        path: '/tabbar/my1',
-        title: 'My1',
-        component: '/tabbar/Koubei',
-        iconName: 'my',
-      },
-      {
-        path: '/tabbar/my2',
-        title: 'My2',
         component: '/tabbar/Koubei',
         iconName: 'my',
       },

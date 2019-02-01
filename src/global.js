@@ -11,16 +11,16 @@ function isWeixn() {
   return ua.includes('micromessenger');
 }
 
-if (!isWeixn()) {
-  alert('请在微信客户端打开');
-  window.location.replace('#/404');
+if (!isWeixn()) { // 需要在微信端运行的时候 开启下面的注释
+  // alert('请在微信客户端打开');
+  // window.location.replace('#/404');
 } else {
   debug().then(() => {
     initWx({
-      title: '“盐值担当”2018城区形象表情包大赛',
-      imgUrl: 'https://h5.parsec.com.cn/common/emoticon-icon.png',
+      title: '分享标题',
+      imgUrl: '', // 分享图标
       isNeedLogin: true,
-      desc: '盐田城区形象表情包大赛，万元奖金等你拿',
+      desc: '分享描述',
       openid: process.env.NODE_ENV === 'development' ? 'oEgayjggrU06oORZJVeFUJ_KF1Mk' : undefined,
     });
   });
