@@ -5,16 +5,22 @@
     "target": "es2016",
     "lib": ["es6", "dom"],
     "sourceMap": true,
+    "baseUrl": ".",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "rootDir": "src",
+    "rootDirs": ["/src", "/tests", "/mock","./typings"],
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "experimentalDecorators": true
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
+  "include": ["./src"],
   "exclude": [
     "node_modules",
     "build",
