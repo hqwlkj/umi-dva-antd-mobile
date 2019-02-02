@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default class extends React.PureComponent {
+export default class extends React.PureComponent<{}, {}, any> {
   public render() {
     console.log('this.props', this.props);
     return (
