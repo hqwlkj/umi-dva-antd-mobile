@@ -60,6 +60,10 @@ $ yarn build or npm run build
 
 2、[H5 DEMO](https://h5.parsec.com.cn/weilai/demo) 建议在手机浏览器或者微信浏览器预览。
 
+3、[抽奖大转盘 DEMO](https://h5.parsec.com.cn/turntable_demo) 建议在手机浏览器或者微信浏览器预览。
+
+###### *注 由于 `DEMO` 代码是从正式项目中提取的，没有放在 `examples` 目录下；有需要的同学，请在 [Issue](https://github.com/hqwlkj/umi-dva-antd-mobile/issues) 中索要，看见消息后我会及时提供，谢谢各位同学的 :star: :star2: :dizzy:
+
 ## DEMO
 请扫描下方二维码预览效果。
 

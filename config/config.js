@@ -26,6 +26,7 @@ const plugins = [
       },
       dll: false,
       hd: false,
+      fastClick: true,
       routes: {
         exclude: [],
       },
