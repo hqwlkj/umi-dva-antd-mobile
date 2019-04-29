@@ -14,6 +14,7 @@ module.exports = {
     page: true,
   },
   rules: {
+    'no-console': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js'] }],
     'react/jsx-wrap-multilines': 0,
     'react/prop-types': 0,
@@ -21,7 +22,7 @@ module.exports = {
     'react/forbid-prop-types': 0,
     'react/jsx-one-expression-per-line': 0,
     'import/no-unresolved': [2, { ignore: ['^@/', '^umi/'] }],
-    "import/prefer-default-export": 0,
+    'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': [
       2,
       {
@@ -34,6 +35,8 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'linebreak-style': 0,
+    quotes: ['error', 'single'], // 使用单引号
+    semi: ['error', 'always'], // 结束添加分号
   },
   settings: {
     polyfills: ['fetch', 'promises', 'url'],

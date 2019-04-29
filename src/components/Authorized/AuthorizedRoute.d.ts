@@ -1,4 +1,5 @@
 import * as React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { RouteProps } from 'react-router';
 
 type authorityFN = (currentAuthority?: string) => boolean;
