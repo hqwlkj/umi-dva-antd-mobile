@@ -12,6 +12,7 @@
     "jsx-no-lambda": false,
     "no-implicit-dependencies": false,
     "jsx-boolean-value": false,
-    "global-require": true
+    "global-require": true,
+    "ordered-imports": false
   }
 }
