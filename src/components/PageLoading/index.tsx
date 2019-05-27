@@ -1,5 +1,5 @@
-import React from 'react';
 import { ActivityIndicator } from 'antd-mobile';
+import React from 'react';
 
 export default () => (
   <div

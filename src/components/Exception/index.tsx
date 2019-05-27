@@ -1,13 +1,12 @@
-import { Button } from "antd";
-import classNames from "classnames";
-import React, { createElement } from "react";
-import config from "./typeConfig";
+import { Button } from 'antd';
+import classNames from 'classnames';
+import React, { createElement } from 'react';
+import config from './typeConfig';
 
-const styles = require("./index.less");
-
+const styles = require('./index.less');
 
 export interface IExceptionProps {
-  type?: "403" | "404" | "500";
+  type?: '403' | '404' | '500';
   title?: React.ReactNode;
   desc?: React.ReactNode;
   img?: string;
@@ -21,8 +20,8 @@ export interface IExceptionProps {
 
 class Exception extends React.PureComponent<IExceptionProps, any> {
   public static defaultProps = {
-    backText: "back to home",
-    redirect: "/"
+    backText: 'back to home',
+    redirect: '/',
   };
 
   constructor(props) {
@@ -34,7 +33,7 @@ class Exception extends React.PureComponent<IExceptionProps, any> {
     const {
       className,
       backText,
-      linkElement = "a",
+      linkElement = 'a',
       type,
       title,
       desc,
@@ -43,15 +42,16 @@ class Exception extends React.PureComponent<IExceptionProps, any> {
       redirect,
       ...rest
     } = this.props;
-    const pageType = type in config ? type : "404";
+    const pageType = type in config ? type : '404';
     const clsString = classNames(styles.exception, className);
     const createElementProps: {
-      key: string,
+      key: string;
       to: string;
-      href: string
+      href: string;
     } = {
-      key: "back-btn",
-      to: redirect, href: redirect
+      key: 'back-btn',
+      to: redirect,
+      href: redirect,
     };
     return (
       <div className={clsString} {...rest}>
@@ -66,11 +66,11 @@ class Exception extends React.PureComponent<IExceptionProps, any> {
           <div className={styles.desc}>{desc || config[pageType].desc}</div>
           <div className={styles.actions}>
             {actions ||
-            createElement(
-              linkElement,
-              createElementProps,
-              <Button type="primary">{backText}</Button>
-            )}
+              createElement(
+                linkElement,
+                createElementProps,
+                <Button type="primary">{backText}</Button>
+              )}
           </div>
         </div>
       </div>

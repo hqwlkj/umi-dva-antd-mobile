@@ -11,7 +11,7 @@ interface IResultState {
     score: number;
     time: string;
     isPass: boolean;
-  }
+  };
 }
 
 @connect(({ h5, loading }) => ({
@@ -21,10 +21,16 @@ interface IResultState {
 class Result extends React.PureComponent<any, IResultState> {
   constructor(props) {
     super(props);
-    const { h5: { resultData: { score = 0, time = '00:00', isPass } } } = props;
+    const {
+      h5: {
+        resultData: { score = 0, time = '00:00', isPass },
+      },
+    } = props;
     this.state = {
       resultData: {
-        score, time, isPass,
+        score,
+        time,
+        isPass,
       },
     };
   }
@@ -47,7 +53,9 @@ class Result extends React.PureComponent<any, IResultState> {
   }
 
   public render() {
-    const { resultData: { score = 0, time = '00:00', isPass } } = this.state;
+    const {
+      resultData: { score = 0, time = '00:00', isPass },
+    } = this.state;
     return (
       <div className={styles.result}>
         <div className={styles.card}>
@@ -59,18 +67,20 @@ class Result extends React.PureComponent<any, IResultState> {
           </div>
           <div className={styles.btns}>
             <Button
-              type='ghost'
+              type="ghost"
               onClick={() => {
                 this.goToWrongPage();
               }}
-            >查看错题
+            >
+              查看错题
             </Button>
             <Button
               type="primary"
               onClick={() => {
                 router.push('/entrance');
               }}
-            >返回首页
+            >
+              返回首页
             </Button>
           </div>
         </div>
@@ -78,17 +88,25 @@ class Result extends React.PureComponent<any, IResultState> {
     );
   }
 
-  private getTitleContent = (isPass) => {
+  private getTitleContent = isPass => {
     if (isPass) {
-      return (<>
-        <div className={styles.title}>恭喜您 <br/> 考试通过啦</div>
-        <img src={require('../../assets/h5/pass.jpg')} alt=""/>
-      </>);
+      return (
+        <>
+          <div className={styles.title}>
+            恭喜您 <br /> 考试通过啦
+          </div>
+          <img src={require('../../assets/h5/pass.jpg')} alt="" />
+        </>
+      );
     }
-    return (<>
-      <div className={styles.title}>很遗憾 <br/> 您没有通过考试</div>
-      <img src={require('../../assets/h5/fail.jpg')} alt=""/>
-    </>);
+    return (
+      <>
+        <div className={styles.title}>
+          很遗憾 <br /> 您没有通过考试
+        </div>
+        <img src={require('../../assets/h5/fail.jpg')} alt="" />
+      </>
+    );
   };
   /**
    * 查看错题
@@ -98,11 +116,17 @@ class Result extends React.PureComponent<any, IResultState> {
     const examResult = LS.getObj('exam-test-result');
     let data = [];
     if (examResult !== null) {
-      const { result: { wrong_ids = [] }, questions = [], answers = [] } = examResult;
-      data = wrong_ids.map((id) => ({
-        ...questions.filter(x => x.id === id)[0] || {},
-        userAnswer: this.getUserSelectAnswer(answers, id),
-      })).filter(x => x !== null);
+      const {
+        result: { wrong_ids = [] },
+        questions = [],
+        answers = [],
+      } = examResult;
+      data = wrong_ids
+        .map(id => ({
+          ...(questions.filter(x => x.id === id)[0] || {}),
+          userAnswer: this.getUserSelectAnswer(answers, id),
+        }))
+        .filter(x => x !== null);
     }
     // 先获取一遍数据 避免 js 报错
     dispatch({
@@ -121,7 +145,6 @@ class Result extends React.PureComponent<any, IResultState> {
     }
     return [];
   };
-
 }
 
 export default Result;

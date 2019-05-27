@@ -11,7 +11,7 @@ interface IChapterData {
   parentId?: string | number;
   value: string | number;
   label: React.ReactNode;
-  children?: IChapterData[]
+  children?: IChapterData[];
 }
 
 interface IEntranceState {
@@ -25,8 +25,8 @@ interface IEntranceProps {
   dispatch?: any;
   loading?: boolean;
   h5: {
-    chapterData: IChapterData[] | IChapterData[][]
-  }
+    chapterData: IChapterData[] | IChapterData[][];
+  };
 }
 
 @connect(({ h5, loading }) => ({
@@ -46,7 +46,9 @@ class Index extends React.Component<IEntranceProps, IEntranceState> {
 
   public render() {
     const { selected, chapterValue, chapterLabel, visible } = this.state;
-    const { h5: { chapterData = [] } } = this.props;
+    const {
+      h5: { chapterData = [] },
+    } = this.props;
     const questionTotal = 100;
     return (
       <div className={styles.entranceBox}>
@@ -141,10 +143,10 @@ class Index extends React.Component<IEntranceProps, IEntranceState> {
                   ]);
                 }}
               >
-                <Icon type="cross"/>
+                <Icon type="cross" />
               </div>
               <div className={styles.avatar}>
-                <img src={require('../../assets/h5/avatar.png')} alt="avatar"/>
+                <img src={require('../../assets/h5/avatar.png')} alt="avatar" />
               </div>
               <div className={styles['name-wrap']}>
                 滴滴 <span>师傅</span>

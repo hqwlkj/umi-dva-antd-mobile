@@ -7,7 +7,7 @@ export default {
     chapterData: [],
   },
   effects: {
-    * fetch({ payload }, { call, put }) {
+    *fetch({ payload }, { call, put }) {
       const response = yield call(query, payload);
       yield put({
         type: 'save',
