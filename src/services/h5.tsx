@@ -6,7 +6,6 @@ export async function queryChapter(params) {
   return request(`/api/chapter?${stringify(params)}`);
 }
 
-
 export async function queryQuestions(params) {
   return request(`/api/questions?${stringify(params)}`);
 }

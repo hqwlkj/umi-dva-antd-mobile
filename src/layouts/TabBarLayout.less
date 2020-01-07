@@ -1,11 +1,11 @@
-@import '~antd/lib/style/themes/default.less';
+@import '~antd-mobile/lib/style/themes/default.less';
 
 .container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: auto;
-  background: @layout-body-background;
+  background: @border-color-base;
 
   .content {
     padding: 0;
@@ -13,8 +13,6 @@
 
     :global {
       /* 样式覆盖，解决移动端滚动问题，避免容器模拟滚动，都采用body滚动，以及自己封装的滚动容器 */
-
-
     }
   }
 }

@@ -1,11 +1,8 @@
 import React from 'react';
 
-
 export default class extends React.PureComponent {
   public render() {
-    return (
-      <>{this.renderContent()}</>
-    );
+    return <>{this.renderContent()}</>;
   }
 
   private renderContent = () => {

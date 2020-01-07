@@ -1,34 +1,55 @@
 // @ts-ignore
 import { query } from '@/services/api';
+import { Effect } from './connect';
+import { Reducer } from 'redux';
+import { Subscription } from 'dva';
 
-export default {
+export interface GlobalModelState {
+  chapterData: any[];
+}
+export interface GlobalModelType {
+  namespace: 'global';
+  state: GlobalModelState;
+  effects: {
+    fetch: Effect;
+  };
+  reducers: {
+    saveChapterData: Reducer<GlobalModelState>;
+  };
+  subscriptions: { setup: Subscription };
+}
+
+const GlobalModel: GlobalModelType = {
   namespace: 'global',
   state: {
     chapterData: [],
   },
   effects: {
-    * fetch({ payload }, { call, put }) {
+    *fetch({ payload }, { call, put }) {
       const response = yield call(query, payload);
       yield put({
-        type: 'save',
+        type: 'saveChapterData',
         payload: response,
       });
     },
   },
   reducers: {
-    save(state) {
+    saveChapterData(state, { payload }) {
       return {
         ...state,
+        ...payload,
       };
     },
   },
   subscriptions: {
     setup({ dispatch, history }) {
-      return history.listen(({ pathname, query }) => {
+      return history.listen(({ pathname, search }) => {
         if (pathname === '/users') {
-          dispatch({ type: 'fetch', payload: query });
+          dispatch({ type: 'fetch', payload: search });
         }
       });
     },
   },
 };
+
+export default GlobalModel;

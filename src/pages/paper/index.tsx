@@ -12,10 +12,12 @@ const styles = require('./index.less');
 interface IPaperState {
   current: number; // 当前题目下标
   selected: [] | any;
-  answers: Array<{
-    questionId: number;
-    answer: [];
-  }> | any;
+  answers:
+    | Array<{
+        questionId: number;
+        answer: [];
+      }>
+    | any;
   type: string;
 }
 
@@ -36,7 +38,7 @@ interface ITextPaperProps {
       createAt: string;
       updateAt: string;
     }>;
-  }
+  };
 }
 
 @connect(({ h5, loading }) => ({
@@ -54,14 +56,12 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
     };
   }
 
-
   public componentDidMount() {
     const { type } = this.state;
     if (type === '') {
       this.loadWrongQuestions();
     }
   }
-
 
   /**
    * 获取题型
@@ -124,7 +124,9 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
    * 获取试卷中的错题 ID 信息
    */
   private handleFilterWrongQuestionsId = () => {
-    const { h5: { questions = [] } } = this.props;
+    const {
+      h5: { questions = [] },
+    } = this.props;
     if (LS.getObj('exam-test') != null) {
       const { answers = [] } = LS.getObj('exam-test');
       if (questions && questions.length > 0) {
@@ -134,9 +136,7 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
           answers.map(item => {
             if (item && item.answer) {
               const question = questions.filter(x => x.id === item.questionId)[0];
-              const qanswers = question.answers
-                .sort()
-                .join(',');
+              const qanswers = question.answers.sort().join(',');
               const answerStr = item.answer.sort().join(',');
               if (qanswers.toString() !== answerStr.toString()) {
                 wrongIds.push(item.questionId);
@@ -169,7 +169,9 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
   private getPaperContent = () => {
     let { current, selected } = this.state;
     const { answers, type } = this.state;
-    const { h5: { questions } } = this.props;
+    const {
+      h5: { questions },
+    } = this.props;
     const question = questions.length > 0 ? questions[current] : undefined;
     const questionsType =
       question !== undefined ? this.getQuestionsType(question.answers, question.options) : '--';
@@ -203,20 +205,20 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
           <div className={styles.question}>
             {question !== undefined && (
               <>
-                <div className={styles.description}>
-                  {question.description || '--'}
-                </div>
+                <div className={styles.description}>{question.description || '--'}</div>
                 <div className={styles.options}>
                   {question.options.map((item, index) => (
                     <div
                       key={`option-${index}`}
                       className={classnames(styles.option, {
                         [styles.correct]:
-                        (type === 'preview' || type === 'wrong') &&
-                        question.answers.filter(x => x === index).length > 0,
-                        [styles['opt-selected-wrong']]: type === 'wrong' && question.userAnswer.filter(x => x === index).length > 0,
+                          (type === 'preview' || type === 'wrong') &&
+                          question.answers.filter(x => x === index).length > 0,
+                        [styles['opt-selected-wrong']]:
+                          type === 'wrong' &&
+                          question.userAnswer.filter(x => x === index).length > 0,
                         [styles['opt-selected']]:
-                        type === 'test' && (selected.filter(x => x === index) || []).length > 0,
+                          type === 'test' && (selected.filter(x => x === index) || []).length > 0,
                       })}
                     >
                       <input
@@ -253,7 +255,7 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
             className={styles['btn-enter']}
             disabled={current === 0}
             onClick={() => {
-              this.setState({ current: (current -= 1) }, () => {
+              this.setState({ current: current -= 1 }, () => {
                 if (type === 'test' && answers.length > 0) {
                   const obj = answers.filter(x => x.questionId === questions[current].id)[0] || {};
                   if (obj.answer) {
@@ -293,9 +295,10 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
                   answers.length > 0 &&
                   answers.filter(x => x.questionId === questions[nextIndex].id).length > 0
                 ) {
-                  const obj = answers.filter(x => x.questionId === questions[nextIndex].id)[0] || {};
+                  const obj =
+                    answers.filter(x => x.questionId === questions[nextIndex].id)[0] || {};
                   if (obj.answer) {
-                    this.setState({ selected: obj.answer, current: (current += 1) });
+                    this.setState({ selected: obj.answer, current: current += 1 });
                   }
                 } else if (selected.length === 0) {
                   Modal.alert('请选择至少一个选项', '');
@@ -304,7 +307,7 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
                     questionId: question.id,
                     answer: selected,
                   });
-                  this.setState({ current: (current += 1), selected: [], answers }, () => {
+                  this.setState({ current: current += 1, selected: [], answers }, () => {
                     // TODO: 将本次考试信息 存储在本地
                     LS.setObj('exam-test', { current, questions, answers });
                   });
@@ -316,7 +319,7 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
                 }
                 this.handleTestSubmit();
               } else {
-                this.setState({ current: (current += 1) });
+                this.setState({ current: current += 1 });
               }
             }}
           >
@@ -328,7 +331,9 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
   };
 
   public render() {
-    const { h5: { questions } } = this.props;
+    const {
+      h5: { questions },
+    } = this.props;
     return (
       <div className={styles['test-paper']}>
         {questions && questions.length > 0 ? (
@@ -346,7 +351,7 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
                 返回首页
               </div>
               <div className={styles['empty-content']}>
-                <img src={require('../../assets/h5/empty.svg')} style={{ width: 100 }}/>
+                <img src={require('../../assets/h5/empty.svg')} style={{ width: 100 }} />
                 <div>没有任何模拟考试试题信息</div>
               </div>
             </div>
@@ -361,11 +366,17 @@ class Index extends React.PureComponent<ITextPaperProps, IPaperState> {
     const examResult = LS.getObj('exam-test-result');
     let data = [];
     if (examResult !== null) {
-      const { result: { wrong_ids = [] }, questions = [], answers = [] } = examResult;
-      data = wrong_ids.map((id) => ({
-        ...questions.filter(x => x.id === id)[0] || {},
-        userAnswer: this.getUserSelectAnswer(answers, id),
-      })).filter(x => x !== null);
+      const {
+        result: { wrong_ids = [] },
+        questions = [],
+        answers = [],
+      } = examResult;
+      data = wrong_ids
+        .map(id => ({
+          ...(questions.filter(x => x.id === id)[0] || {}),
+          userAnswer: this.getUserSelectAnswer(answers, id),
+        }))
+        .filter(x => x !== null);
     }
     // 先获取一遍数据 避免 js 报错
     dispatch({

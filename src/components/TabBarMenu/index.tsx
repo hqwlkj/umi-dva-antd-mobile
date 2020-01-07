@@ -3,7 +3,6 @@ import { ITabBarItemProps } from './tabBarItemProps';
 
 const styles = require('./index.less');
 
-
 export interface ITabBarMeunProps {
   bars: ITabBarItemProps[];
 }
@@ -14,6 +13,6 @@ export default class extends React.PureComponent<ITabBarMeunProps, {}> {
   }
 
   public render() {
-    return (<div className={styles.tabBarMenu}>2</div>);
+    return <div className={styles.tabBarMenu}>2</div>;
   }
 }

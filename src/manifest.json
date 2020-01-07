@@ -1,6 +1,6 @@
 {
-  "name": "Umi Dva App",
-  "short_name": "Umi Dva App",
+  "name": "umi-dva-antd-mobile",
+  "short_name": "umi-dva-antd-mobile",
   "display": "standalone",
   "start_url": "./?utm_source=homescreen",
   "theme_color": "#002140",

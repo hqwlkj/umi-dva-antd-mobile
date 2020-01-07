@@ -1,15 +1,19 @@
-// @ts-ignore
 import Constants from '@/utils/constants';
-// @ts-ignore
 import request from '@/utils/request';
 import LS from 'parsec-ls';
 import { parse, stringify } from 'qs';
 import wx from 'weixin-js-sdk';
 
-let ready;
+let ready: any;
 const readyFn = (() => new Promise(resolve => (ready = resolve)))();
 
-export async function share(title, desc, link, imgUrl, success?) {
+export async function share(
+  title: string,
+  desc: string,
+  link: string,
+  imgUrl: string,
+  success?: () => void
+) {
   await readyFn;
   // 朋友圈
   wx.onMenuShareTimeline({
@@ -52,11 +56,11 @@ export async function share(title, desc, link, imgUrl, success?) {
   });
 }
 
-export async function getLocation(callback) {
+export async function getLocation(callback: (params: any) => void) {
   await readyFn;
   wx.getLocation({
     type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-    success: async res => {
+    success: async (res: any) => {
       if (callback) {
         await callback(res);
       }
@@ -69,10 +73,19 @@ export default async ({
   desc = title,
   link = window.location.href,
   imgUrl = '',
-  openid = parse(window.location.search).openid || LS.get(Constants.openid),
+  openid = parse(window.location.search).openid || LS.get(Constants.openId),
   appId = 'wxf203b94ccdbb15d5',
   isNeedLogin = false,
-} = {}) => {
+}: {
+  title?: string;
+  desc?: string;
+  link?: string;
+  imgUrl?: string;
+  openid?: string | null;
+  thirdToken?: string | null;
+  appId?: string;
+  isNeedLogin?: boolean;
+}) => {
   let { href } = window.location;
   const preHref = href.replace(`openid=${openid}&appid=${appId}`, '');
   if (href !== preHref) {
@@ -83,23 +96,19 @@ export default async ({
       const formdata = new FormData();
       formdata.append('appid', appId);
       formdata.append('redirect_uri', window.location.href);
-      await request(
-        '/wx/api/user_auth_url',
-        {
-          method: 'POST',
-          body: formdata,
-        },
-        {
-          headers: { 'Content-Type': 'multipart/form-data;' },
-        }
-      ).then(({ data: { url } }) => {
+      // @ts-ignore
+      await request('/wx/api/user_auth_url', {
+        headers: { 'Content-Type': 'multipart/form-data;' },
+        method: 'POST',
+        body: formdata,
+      }).then(({ data: { url } }: any) => {
         // @ts-ignore
         window.location.href.replace(url);
       });
     };
     await doLogin();
   } else {
-    LS.set(Constants.openid, openid);
+    LS.set(Constants.openId, openid);
     href = href.replace(`openid=${openid}&appid=${appId}`, '');
     if (window.location.href !== href) {
       window.location.href = href;
@@ -113,14 +122,14 @@ export default async ({
       t: 4,
       url: window.location.href,
     })}`
-  ).then(({ result }) => {
+  ).then(({ result }: any) => {
     wx.config({
       debug: false,
       jsApiList: Object.keys(wx),
       ...result,
     });
   });
-  wx.error(e => {
+  wx.error((e: any) => {
     console.log('wx sdk errors:', e);
   });
   wx.ready(() => {

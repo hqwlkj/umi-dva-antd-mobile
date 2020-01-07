@@ -2,16 +2,19 @@ import { Toast, Modal } from 'antd-mobile';
 import { setAuthority } from '@/utils/authority';
 import initWx from '@/utils/wx';
 import debug from '@/utils/debug';
+// import defaultSettings from '../config/defaultSettings';
 import './global.less';
+
+//const { pwa } = defaultSettings;
 
 setAuthority('admin');
 
 function isWeixn() {
-  const ua = navigator.userAgent.toLowerCase();
-  return ua.includes('micromessenger');
+  return /micromessenger/.test(navigator.userAgent.toLowerCase());
 }
 
-if (!isWeixn()) { // 需要在微信端运行的时候 开启下面的注释
+if (!isWeixn()) {
+  // 需要在微信端运行的时候 开启下面的注释
   // alert('请在微信客户端打开');
   // window.location.replace('#/404');
 } else {

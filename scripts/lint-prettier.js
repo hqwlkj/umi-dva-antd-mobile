@@ -9,6 +9,7 @@
 const prettier = require('prettier');
 const fs = require('fs');
 const chalk = require('chalk');
+
 const prettierConfigPath = require.resolve('../.prettierrc');
 
 const files = process.argv.slice(2);
@@ -40,6 +41,7 @@ files.forEach(file => {
     })
     .catch(e => {
       didError = true;
+      console.log(e);
     })
     .finally(() => {
       if (didError) {

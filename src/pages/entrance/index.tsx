@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { connect } from 'dva';
 import LS from 'parsec-ls';
 import React from 'react';
-import * as theme from '../../theme';
+import * as theme from '@/theme';
 
 const styles = require('./index.less');
 
@@ -11,7 +11,7 @@ interface IChapterData {
   parentId?: string | number;
   value: string | number;
   label: React.ReactNode;
-  children?: IChapterData[]
+  children?: IChapterData[];
 }
 
 interface IEntranceState {
@@ -25,16 +25,17 @@ interface IEntranceProps {
   dispatch?: any;
   loading?: boolean;
   h5: {
-    chapterData: IChapterData[] | IChapterData[][]
-  }
+    chapterData: IChapterData[] | IChapterData[][];
+  };
 }
 
+// @ts-ignore
 @connect(({ h5, loading }) => ({
   h5,
   loading: loading.models.h5,
 }))
 class Index extends React.Component<IEntranceProps, IEntranceState> {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       selected: -1,
@@ -46,7 +47,9 @@ class Index extends React.Component<IEntranceProps, IEntranceState> {
 
   public render() {
     const { selected, chapterValue, chapterLabel, visible } = this.state;
-    const { h5: { chapterData = [] } } = this.props;
+    const {
+      h5: { chapterData = [] },
+    } = this.props;
     const questionTotal = 100;
     return (
       <div className={styles.entranceBox}>
@@ -84,8 +87,11 @@ class Index extends React.Component<IEntranceProps, IEntranceState> {
           value={chapterValue}
           onOk={e => {
             this.setState({
+              selected: 0,
+              visible: false,
               chapterValue: e,
-              chapterLabel: chapterData.filter(x => x.value === e[0])[0].label,
+              chapterLabel: (chapterData || []).filter((x: { value: any }) => x.value === e[0])[0]
+                .label,
             });
           }}
         >
@@ -141,10 +147,10 @@ class Index extends React.Component<IEntranceProps, IEntranceState> {
                   ]);
                 }}
               >
-                <Icon type="cross"/>
+                <Icon type="cross" />
               </div>
               <div className={styles.avatar}>
-                <img src={require('../../assets/h5/avatar.png')} alt="avatar"/>
+                <img src={require('../../assets/h5/avatar.png')} alt="avatar" />
               </div>
               <div className={styles['name-wrap']}>
                 滴滴 <span>师傅</span>
@@ -216,7 +222,7 @@ class Index extends React.Component<IEntranceProps, IEntranceState> {
    * 获取试题
    * @param step
    */
-  public getPaper = step => {
+  public getPaper = (step: number) => {
     const { selected, chapterValue } = this.state;
     const { dispatch } = this.props;
     if (step === 2 && (selected === -1 || chapterValue.length === 0)) {
@@ -240,7 +246,7 @@ class Index extends React.Component<IEntranceProps, IEntranceState> {
       // @TODO 生成考试试卷
       dispatch({
         type: 'h5/fetchTestPapers',
-        callback: (response, modalVisible) => {
+        callback: (response: { paper: any }, modalVisible: any) => {
           this.setState({
             visible: modalVisible,
           });

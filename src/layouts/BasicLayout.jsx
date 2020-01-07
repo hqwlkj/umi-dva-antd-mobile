@@ -2,11 +2,11 @@ import React, { PureComponent } from 'react';
 import NProgress from 'nprogress';
 import withRouter from 'umi/withRouter';
 import Authorized from '@/utils/Authorized';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Exception403 from '@/pages/exception/403';
 import pathToRegexp from 'path-to-regexp';
 import { connect } from 'dva';
-import styles from './index.less';
+import './index.less';
 import '@/layouts/nprogress.less';
 
 NProgress.configure({ showSpinner: false });
@@ -50,19 +50,15 @@ class BasicLayout extends PureComponent {
     }
 
     return (
-      <ReactCSSTransitionGroup
-        transitionName="transitionWrapper"
-        component="div"
-        className={styles.transitionWrapper}
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}
-      >
-        <div key={pathname} style={{ position: 'absolute', width: '100%', height: '100%' }}>
-          <Authorized authority={routerConfig} noMatch={<Exception403 />}>
-            {children}
-          </Authorized>
-        </div>
-      </ReactCSSTransitionGroup>
+      <TransitionGroup>
+        <CSSTransition key={pathname} classNames="fade" timeout={300}>
+          <div key={pathname} style={{ position: 'absolute', width: '100%', height: '100%' }}>
+            <Authorized authority={routerConfig} noMatch={<Exception403 />}>
+              {children}
+            </Authorized>
+          </div>
+        </CSSTransition>
+      </TransitionGroup>
     );
   }
 }

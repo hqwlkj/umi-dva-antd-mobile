@@ -1,7 +1,7 @@
 /* globals workbox */
 /* eslint-disable no-restricted-globals */
 workbox.core.setCacheNameDetails({
-  prefix: 'umi-dva-antd-mobile',
+  prefix: 'antd-pro',
   suffix: 'v1',
 });
 // Control all opened tabs ASAP
@@ -49,17 +49,15 @@ workbox.routing.registerRoute(/\/color.less/, workbox.strategies.networkFirst())
 /**
  * Response to client after skipping waiting with MessageChannel
  */
-window.addEventListener('message', event => {
+addEventListener('message', event => {
   const replyPort = event.ports[0];
   const message = event.data;
   if (replyPort && message && message.type === 'skip-waiting') {
     event.waitUntil(
-      self
-        .skipWaiting()
-        .then(
-          () => replyPort.postMessage({ error: null }),
-          error => replyPort.postMessage({ error })
-        )
+      self.skipWaiting().then(
+        () => replyPort.postMessage({ error: null }),
+        error => replyPort.postMessage({ error })
+      )
     );
   }
 });

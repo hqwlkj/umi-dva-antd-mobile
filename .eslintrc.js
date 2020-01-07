@@ -1,9 +1,7 @@
 module.exports = {
   parser: 'babel-eslint',
-  extends: ['airbnb', 'prettier', 'plugin:compat/recommended'],
-  plugins: [
-    'react-hooks',
-  ],
+  extends: ['eslint-config-umi', 'airbnb', 'prettier', 'plugin:compat/recommended'],
+  plugins: ['react-hooks'],
   env: {
     browser: true,
     node: true,
@@ -41,8 +39,8 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'linebreak-style': 0,
-    'quotes': ['error', 'single'], // 使用单引号
-    'semi': ['error', 'always'], // 结束添加分号
+    quotes: ['error', 'single'], // 使用单引号
+    semi: ['error', 'always'], // 结束添加分号
   },
   settings: {
     // support import modules from TypeScript files in JavaScript files

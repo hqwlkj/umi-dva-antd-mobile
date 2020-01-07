@@ -6,9 +6,7 @@ import Authorized from '@/utils/Authorized';
 import Exception403 from '@/pages/exception/403';
 import pathToRegexp from 'path-to-regexp';
 import { connect } from 'dva';
-import theme from '../theme';
 import styles from './TabBarLayout.less';
-
 
 class TabBarLayout extends React.PureComponent {
   state = {
@@ -42,13 +40,12 @@ class TabBarLayout extends React.PureComponent {
    * 获取 路由配置中带有 NAME 属性的路由信息
    * @param routes
    */
-  getTabBarItems = (routes) => {
+  getTabBarItems = routes => {
     if (routes && typeof routes === 'object') {
       return (routes || []).filter(item => item.title !== undefined);
     }
     return [];
   };
-
 
   /**
    * 渲染 组件
@@ -79,24 +76,29 @@ class TabBarLayout extends React.PureComponent {
           return '';
         });
 
-        tabBarItem = items.map((item) => (
+        tabBarItem = items.map(item => (
           <TabBar.Item
             title={item.title}
             key={`tab-bar-item-${item.path}`}
-
-            icon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: `url(${require(`../assets/tarbar/${item.iconName || item.title}-un.svg`)}) center center /  21px 21px no-repeat`,
-            }}
-            />
+            icon={
+              <div
+                style={{
+                  width: '22px',
+                  height: '22px',
+                  background: `url(${require(`../assets/tarbar/${item.iconName ||
+                    item.title}-un.svg`)}) center center /  21px 21px no-repeat`,
+                }}
+              />
             }
-            selectedIcon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: `url(${require(`../assets/tarbar/${item.iconName || item.title}.svg`)}) center center /  21px 21px no-repeat`,
-            }}
-            />
+            selectedIcon={
+              <div
+                style={{
+                  width: '22px',
+                  height: '22px',
+                  background: `url(${require(`../assets/tarbar/${item.iconName ||
+                    item.title}.svg`)}) center center /  21px 21px no-repeat`,
+                }}
+              />
             }
             selected={pathname === item.path}
             badge={0}
@@ -105,30 +107,38 @@ class TabBarLayout extends React.PureComponent {
             }}
             data-seed="logId"
           >
-            <Authorized authority={routerConfig} noMatch={<Exception403/>}>
+            <Authorized authority={routerConfig} noMatch={<Exception403 />}>
               {children}
             </Authorized>
-          </TabBar.Item>));
-        const popoverItem = moreItems.map((item) => (
+          </TabBar.Item>
+        ));
+        const popoverItem = moreItems.map(item => (
           <Popover.Item
             key={`popover-item-${item.path}`}
             value={item.title}
-            icon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: `url(${require(`../assets/tarbar/${item.iconName || item.title}-un.svg`)}) center center /  21px 21px no-repeat`,
-            }}
-            />}
-          >{item.name}
-          </Popover.Item>));
-
+            icon={
+              <div
+                style={{
+                  width: '22px',
+                  height: '22px',
+                  background: `url(${require(`../assets/tarbar/${item.iconName ||
+                    item.title}-un.svg`)}) center center /  21px 21px no-repeat`,
+                }}
+              />
+            }
+          >
+            {item.name}
+          </Popover.Item>
+        ));
 
         tabBarItem.push(
           <TabBar.Item
-            title='更多'
+            title="更多"
             key="tab-bar-item-more"
-            icon={<Icon style={{ width: '22px', height: '22px' }} type='ellipsis'/>}
-            selectedIcon={<div style={{ width: '22px', height: '22px', color: theme.primaryColor }} type='ellipsis'/>}
+            icon={<Icon style={{ width: '22px', height: '22px' }} type="ellipsis" />}
+            selectedIcon={
+              <div style={{ width: '22px', height: '22px', color: '#00263C' }} type="ellipsis" />
+            }
             selected={pathname === 'more'}
             badge={0}
             onPress={() => {
@@ -140,7 +150,7 @@ class TabBarLayout extends React.PureComponent {
               mask
               visible={visible}
               overlay={popoverItem}
-              placement='bottomRight'
+              placement="bottomRight"
               align={{
                 overflow: { adjustY: 0, adjustX: 0 },
                 offset: [-10, 0],
@@ -148,39 +158,45 @@ class TabBarLayout extends React.PureComponent {
               onVisibleChange={this.handleVisibleChange}
               onSelect={this.onSelect}
             >
-              <div style={{
-                height: '100%',
-                padding: '0 15px',
-                marginRight: '-15px',
-                display: 'flex',
-                alignItems: 'center',
-                width: '100%',
-              }}
+              <div
+                style={{
+                  height: '100%',
+                  padding: '0 15px',
+                  marginRight: '-15px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '100%',
+                }}
               >
-                <Icon type="ellipsis"/>
+                <Icon type="ellipsis" />
               </div>
             </Popover>
-          </TabBar.Item>,
+          </TabBar.Item>
         );
       } else {
-        tabBarItem = tabBarItems.map((item) => (
+        tabBarItem = tabBarItems.map(item => (
           <TabBar.Item
             title={item.title}
             key={`tab-bar-item-${item.path}`}
-
-            icon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: `url(${require(`../assets/tarbar/${item.iconName || item.title}-un.svg`)}) center center /  21px 21px no-repeat`,
-            }}
-            />
+            icon={
+              <div
+                style={{
+                  width: '22px',
+                  height: '22px',
+                  background: `url(${require(`../assets/tarbar/${item.iconName ||
+                    item.title}-un.svg`)}) center center /  21px 21px no-repeat`,
+                }}
+              />
             }
-            selectedIcon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: `url(${require(`../assets/tarbar/${item.iconName || item.title}.svg`)}) center center /  21px 21px no-repeat`,
-            }}
-            />
+            selectedIcon={
+              <div
+                style={{
+                  width: '22px',
+                  height: '22px',
+                  background: `url(${require(`../assets/tarbar/${item.iconName ||
+                    item.title}.svg`)}) center center /  21px 21px no-repeat`,
+                }}
+              />
             }
             selected={pathname === item.path}
             badge={0}
@@ -189,36 +205,35 @@ class TabBarLayout extends React.PureComponent {
             }}
             data-seed="logId"
           >
-            <Authorized authority={routerConfig} noMatch={<Exception403/>}>
+            <Authorized authority={routerConfig} noMatch={<Exception403 />}>
               {children}
             </Authorized>
-          </TabBar.Item>));
+          </TabBar.Item>
+        ));
       }
-
 
       return (
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
           barTintColor="white"
-          tabBarPosition='bottom'
+          tabBarPosition="bottom"
         >
           {tabBarItem}
         </TabBar>
       );
     }
     router.push('/404');
-    return (<></>);
-
+    return <></>;
   };
 
-  handleVisibleChange = (visible) => {
+  handleVisibleChange = visible => {
     this.setState({
       visible,
     });
   };
 
-  onSelect = (opt) => {
+  onSelect = opt => {
     console.log(opt.props.value);
     this.setState({
       visible: false,
@@ -234,9 +249,7 @@ class TabBarLayout extends React.PureComponent {
     } = this.props;
     return (
       <div className={styles.container}>
-        <div className={styles.content}>
-          {this.getChildrenContent(children, pathname, routes)}
-        </div>
+        <div className={styles.content}>{this.getChildrenContent(children, pathname, routes)}</div>
       </div>
     );
   }

@@ -5,12 +5,13 @@
  *  prettier all js and all ts.
  *----------*****--------------
  */
-
 const prettier = require('prettier');
 const fs = require('fs');
-const getPrettierFiles = require('./getPrettierFiles');
-const prettierConfigPath = require.resolve('../.prettierrc');
 const chalk = require('chalk');
+
+const getPrettierFiles = require('./getPrettierFiles');
+
+const prettierConfigPath = require.resolve('../.prettierrc');
 
 let didError = false;
 

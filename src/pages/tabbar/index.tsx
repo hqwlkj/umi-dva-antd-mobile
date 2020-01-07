@@ -1,12 +1,9 @@
 import React from 'react';
 
-
 export default class extends React.PureComponent<{}, {}, any> {
   public render() {
     console.log('this.props', this.props);
-    return (
-      <>{this.renderContent()}</>
-    );
+    return <>{this.renderContent()}</>;
   }
 
   private renderContent = () => {

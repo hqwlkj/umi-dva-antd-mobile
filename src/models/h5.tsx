@@ -18,14 +18,14 @@ export default {
     },
   },
   effects: {
-    * fetchChapter({ payload }, { call, put }) {
+    *fetchChapter({ payload }, { call, put }) {
       const response = yield call(queryChapter, payload);
       yield put({
         type: 'saveChapter',
         payload: response,
       });
     },
-    * fetchQuestions({ payload, callback }, { call, put, select }) {
+    *fetchQuestions({ payload, callback }, { call, put, select }) {
       const { chapterData } = yield select(state => state.global);
       const response = yield call(queryQuestions, payload);
       yield put({
@@ -42,7 +42,7 @@ export default {
         yield put(routerRedux.replace(`/paper/${payload.type}`));
       }
     },
-    * fetchTestPapers({ callback }, { call, put, select }) {
+    *fetchTestPapers({ callback }, { call, put, select }) {
       Toast.loading('试卷生成中...');
       const { chapterData } = yield select(state => state.h5);
       const response = yield call(queryTestPapers);
@@ -58,7 +58,7 @@ export default {
         callback(response, true);
       }
     },
-    * submit({ payload, callback }, { call, put }) {
+    *submit({ payload, callback }, { call, put }) {
       Toast.loading('提交试卷中...');
       const response = yield call(saveTestResult, payload);
       yield put({
@@ -71,7 +71,7 @@ export default {
       }
       yield put(routerRedux.replace('/result'));
     },
-    * startTheExam(_, { put, select }) {
+    *startTheExam(_, { put, select }) {
       const { questions, paper, chapterData } = yield select(state => state.h5);
       yield put({
         type: 'savePaperData',
