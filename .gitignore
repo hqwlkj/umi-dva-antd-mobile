@@ -1,9 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-#idea
-.idea
-.idea/**.*
 
 # dependencies
 /node_modules
@@ -21,10 +16,3 @@
 # umi
 .umi
 .umi-production
-
-
-# 部署目录
-/dist
-
-# 测试覆盖率统计
-/coverage

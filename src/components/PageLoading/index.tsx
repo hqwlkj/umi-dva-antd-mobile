@@ -8,7 +8,7 @@ export default () => (
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
-      width: '100px',
+      width: '200px',
       height: '100px',
     }}
   >
@@ -21,7 +21,7 @@ export default () => (
       }}
     >
       <ActivityIndicator animating size="large" />
-      <span style={{ marginTop: 8 }}>加载中...</span>
+      <span style={{ marginTop: 18, fontSize: 26 }}>加载中...</span>
     </div>
   </div>
 );
