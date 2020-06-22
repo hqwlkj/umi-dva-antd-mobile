@@ -1,3 +1,9 @@
+# 抱歉各位，本项目已经停止维护，为了不给您使用造成问题，请仅做参考使用，感谢各位支持
+
+#### 后续将会以我现在搭建的h5 框架重新开源，再次感谢各位的支持。
+
+####
+####
 # umi-dva-antd-mobile
 [![Build With Umi](https://img.shields.io/badge/build%20with-umi-028fe4.svg?style=flat-square)](http://umijs.org/)
 [![Build With dva](https://img.shields.io/badge/build%20with-dva-028fe4.svg?style=flat-square)](https://dvajs.com/)
