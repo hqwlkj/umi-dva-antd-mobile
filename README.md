@@ -82,15 +82,13 @@ DEMO 地址已经全部提供到 [Issue](https://github.com/hqwlkj/umi-dva-antd-
 
 由于demo服务器当前不稳定，建议本地运行查看效果，谢谢
 
- ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) | 
-![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) 
- :---: | :---: 
- H5 应用(已完成) | APP 应用 
+| ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) | ![](https://github.com/hqwlkj/umi-dva-antd-mobile/blob/master/qrcode/h5.png) |
+| --------- | --------- |
+| H5 应用(已完成) | APP 应用  | 
  
 > demo 还在持续完善中。。。
 
 ## 支持环境
-
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br> iOS Safari | [<img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=356c6916013387449cc5287a6934bec4/d53f8794a4c27d1e11530c8216d5ad6eddc4387a.jpg" alt="Android" width="24px" height="24px" />](https://developer.android.com/)</br> Android 
 | --------- | --------- |
